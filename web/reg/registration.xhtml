@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+ 
+<head>
+<link rel="stylesheet" type="text/css" href="style/main.css"/>
+</head>
+ 
+<h:body styleClass="body">
+    
+<center>
+        
+<h:outputText value="New User Registration" styleClass="header"></h:outputText>
+    
+</center>
+    
+<h:form>
+        
+<h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"></h:messages>
+        
+<h:panelGrid columns="2">
+            
+<h:outputText value="Username :"></h:outputText>
+            
+<h:inputText id="username" value="#{regView.regBean.username}" required ="true" requiredMessage="Please Enter Username"/>
+
+            
+<h:outputText value="Password :"></h:outputText>
+            
+<h:inputSecret id="password" value ="#{regView.regBean.password}" required="true" requiredMessage="Please Enter Password!"/>
+
+<h:outputText value="Confirm Password :"></h:outputText>
+            
+<h:inputSecret id="confirmpassword" value="#{regView.regBean.confirmpassword}" required="true" requiredMessage="Please Confirm Password!"/>
+ 
+<h:outputText value="First name :"></h:outputText>
+            
+<h:inputText id="firstname" value="#{regView.regBean.firstname}" required="true" requiredMessage="Please Enter First Name!"/>
+
+<h:outputText value="Last name :"></h:outputText>
+            
+<h:inputText id="lastname" value="#{regView.regBean.lastname}" required="true" requiredMessage="Please Enter Last Name!"/>
+ 
+            
+<h:outputText value="Date of Birth :"></h:outputText>
+            
+<h:inputText id="dob" value="#{regView.regBean.dob}" required="true" requiredMessage="Please Enter Date of Birth!"></h:inputText>
+ 
+            
+<h:outputText value="Email :"></h:outputText>            
+<h:inputText id="email" value="#{regView.regBean.email}" required="true" requiredMessage="Please Enter Email!"></h:inputText>
+ 
+            
+<h:outputText value="Confirm Email :"></h:outputText>
+            
+<h:inputText id="confirmemail" value="#{regView.regBean.confirmemail}" required="true" requiredMessage="Please Confirm Email!"></h:inputText>
+ 
+            
+
+ <!--- here cut the code -->
+<h:commandButton type="reset" value="Reset"></h:commandButton>          
+<h:commandButton type="submit" value="Submit" action="#{regView.addUser}"></h:commandButton>
+            
+
+        
+</h:panelGrid>
+    
+</h:form>
+</h:body>
+ 
+</html>
