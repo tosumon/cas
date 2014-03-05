@@ -15,6 +15,7 @@ import javax.persistence.PersistenceContext;
 /**
  *
  * @author habib
+ * @date
  */
 @Stateless
 public class RegistrationBeanFacade extends AbstractFacade<RegistrationBean> {
