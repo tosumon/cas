@@ -16,9 +16,9 @@ import javax.persistence.Table;
  *
  * @author habib
  */
-@Entity(name = "regBean")
-@Table(name = "registraion")
-public class RegistrationBean implements Serializable {
+@Entity(name = "userBean")
+@Table(name = "user")
+public class UserBean implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,9 +28,7 @@ public class RegistrationBean implements Serializable {
 
     private String password;
 
-    private String confirmpassword;
-
-    private String firstname;
+       private String firstname;
     
     private String lastname;
 
@@ -38,9 +36,7 @@ public class RegistrationBean implements Serializable {
 
     private String email;
 
-    private String confirmemail;
-
-    public Long getId() {
+      public Long getId() {
         return id;
     }
 
@@ -62,14 +58,6 @@ public class RegistrationBean implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getConfirmpassword() {
-        return confirmpassword;
-    }
-
-    public void setConfirmpassword(String confirmpassword) {
-        this.confirmpassword = confirmpassword;
     }
 
     public String getFirstname() {
@@ -103,12 +91,5 @@ public class RegistrationBean implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getConfirmemail() {
-        return confirmemail;
-    }
-
-    public void setConfirmemail(String confirmemail) {
-        this.confirmemail = confirmemail;
-    }    
+  
 }

@@ -7,7 +7,7 @@
 package boundary.reg;
 
 import boundary.AbstractFacade;
-import entities.reg.RegistrationBean;
+import entities.reg.UserBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,7 +18,7 @@ import javax.persistence.PersistenceContext;
  * @date
  */
 @Stateless
-public class RegistrationBeanFacade extends AbstractFacade<RegistrationBean> {
+public class RegistrationBeanFacade extends AbstractFacade<UserBean> {
     @PersistenceContext(unitName = "ComproPUMySQL")
     private EntityManager em;
 
@@ -28,7 +28,7 @@ public class RegistrationBeanFacade extends AbstractFacade<RegistrationBean> {
     }
 
     public RegistrationBeanFacade() {
-        super(RegistrationBean.class);
+        super(UserBean.class);
     }
     
 }

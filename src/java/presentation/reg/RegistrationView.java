@@ -7,12 +7,13 @@
 package presentation.reg;
 
 import boundary.reg.RegistrationBeanFacade;
-import entities.reg.RegistrationBean;
+import entities.reg.UserBean;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import util.ShowMessage;
 
 /**
  *
@@ -25,33 +26,36 @@ public class RegistrationView {
     @EJB
     private RegistrationBeanFacade regFacade;
     
-    private RegistrationBean regBean;
+    private UserBean userBean;
     
-    public RegistrationBean getRegBean(){
-        return regBean;
+    public UserBean getUserBean(){
+        return userBean;
     }
     /**
      * Creates a new instance of RegistrationView
      */
     public RegistrationView() {
-        this.regBean=new RegistrationBean();
+        this.userBean=new UserBean();
     }
     
-     private void addMessage(FacesMessage message) {
+    /* private void addMessage(FacesMessage message) {
 
         FacesContext.getCurrentInstance().addMessage(
                 null, message);
 
-    }
+    }*/
 
     public String addUser() {
 
-      addMessage(
+      /*addMessage(
                 new FacesMessage(FacesMessage.SEVERITY_INFO,
                         "User Registration Successful!!!",
                         null
-                ));
-        this.regFacade.create(regBean);
+                ));*/
+      
+        ShowMessage.showMessage("User Registration Successful!!!", "User Registration message.", FacesMessage.SEVERITY_INFO);
+      
+        this.regFacade.create(userBean);
         return "";
 
     }
