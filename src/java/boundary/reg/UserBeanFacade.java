@@ -18,7 +18,7 @@ import javax.persistence.PersistenceContext;
  * @date
  */
 @Stateless
-public class RegistrationBeanFacade extends AbstractFacade<UserBean> {
+public class UserBeanFacade extends AbstractFacade<UserBean> {
     @PersistenceContext(unitName = "ComproPUMySQL")
     private EntityManager em;
 
@@ -27,7 +27,7 @@ public class RegistrationBeanFacade extends AbstractFacade<UserBean> {
         return em;
     }
 
-    public RegistrationBeanFacade() {
+    public UserBeanFacade() {
         super(UserBean.class);
     }
     
