@@ -6,8 +6,8 @@
 
 package presentation.reg;
 
-import boundary.reg.UserBeanFacade;
-import entities.reg.UserBean;
+import boundary.user.UserBeanFacade;
+import entities.user.UserBean;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
