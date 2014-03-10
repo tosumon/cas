@@ -36,24 +36,8 @@ public class RegistrationView {
         this.userBean=new UserBean();
     }
     
-    /* private void addMessage(FacesMessage message) {
+     public String addUser() {
 
-        FacesContext.getCurrentInstance().addMessage(
-                null, message);
-
-    }*/
-
-    public String addUser() {
-
-      /*addMessage(
-                new FacesMessage(FacesMessage.SEVERITY_INFO,
-                        "User Registration Successful!!!",
-                        null
-                ));*/
-      
-       /* ShowMessage.showMessage("User Registration Successful!!!", "User Registration message.", FacesMessage.SEVERITY_INFO);
-      
-        this.userFacade.create(userBean);*/
         regController.addUser(userBean);
         return "";
 

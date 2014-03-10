@@ -24,12 +24,6 @@ public class RegistrationController {
     
     public String addUser(UserBean userBean) {
 
-      /*addMessage(
-                new FacesMessage(FacesMessage.SEVERITY_INFO,
-                        "User Registration Successful!!!",
-                        null
-                ));*/
-      
         ShowMessage.showMessage("User Registration Successful!!!", "User Registration message.", FacesMessage.SEVERITY_INFO);
       
         this.userFacade.create(userBean);
