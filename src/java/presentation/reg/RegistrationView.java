@@ -7,6 +7,7 @@
 package presentation.reg;
 
 import boundary.user.UserBeanFacade;
+import controller.RegistrationController;
 import entities.user.UserBean;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -20,11 +21,9 @@ import util.ShowMessage;
  */
 @ManagedBean(name="regView")
 @RequestScoped
-public class RegistrationView {
-
+public class RegistrationView {    
     @EJB
-    private UserBeanFacade userFacade;
-    
+    private RegistrationController regController;
     private UserBean userBean;
     
     public UserBean getUserBean(){
@@ -52,9 +51,10 @@ public class RegistrationView {
                         null
                 ));*/
       
-        ShowMessage.showMessage("User Registration Successful!!!", "User Registration message.", FacesMessage.SEVERITY_INFO);
+       /* ShowMessage.showMessage("User Registration Successful!!!", "User Registration message.", FacesMessage.SEVERITY_INFO);
       
-        this.userFacade.create(userBean);
+        this.userFacade.create(userBean);*/
+        regController.addUser(userBean);
         return "";
 
     }
