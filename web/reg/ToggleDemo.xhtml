@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>This is a Toggle Demo</title>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="expand-collapse.js"></script>
+	<link type="text/css" rel="stylesheet" href="style.css" />
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <div class="layer">
+                <!-- The first expanable/collapsible segment: Information -->
+		<div class="heading">
+			<!-- The arrow sign that indicates whether the content is expanded or collapsed-->
+			<div id="arrow" class="arrow plus_sign"></div>
+			<!-- The title of each segment -->
+			<h1>Information</h1>
+		</div>
+		<!-- The expandable/collapsible content -->
+		
+		
+		
+                <p class="content">This is region for Information<br/>		
+		
+		Name : <input type="text"/><br/>
+		Country : <input type="text" /><br/>
+		
+		</p>
+                
+                 <!-- The second expanable/collapsible segment: Education -->
+		<div class="heading">
+			<!-- The arrow sign that indicates whether the content is expanded or collapsed-->
+			<div id="arrow" class="arrow plus_sign"></div>
+			<!-- The title of each segment -->
+			<h1>Education</h1>
+		</div>
+		<!-- The expandable/collapsible content -->
+		
+		
+		
+		<p class="content">This is region for Education<br/>		
+		
+		Course 1 : <input type="text"/><br/>
+		Course 2 : <input type="text" /><br/>
+		
+		</p>
+
+        </div>
+    </h:body>
+</html>
+
