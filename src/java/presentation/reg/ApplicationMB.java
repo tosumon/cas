@@ -6,8 +6,9 @@
 
 package presentation.reg;
 
-import boundary.user.EnglishProficiencyFacade;
-import boundary.user.PersonalDataFacade;
+
+import boundary.user.ApplicantFacade;
+import entities.user.Applicant;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -20,14 +21,27 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class ApplicationMB {
     @EJB
-    private EnglishProficiencyFacade englishProficiencyFacade;
-    @EJB
-    private PersonalDataFacade personalDataFacade;
-
+    private ApplicantFacade applicantFacade;
+    
+    
+    private Applicant applicant;
+    
+    
     /**
      * Creates a new instance of ApplicationMB
+     * @return 
      */
-    public ApplicationMB() {
+    public Applicant getApplicant() {
+        return applicant;
     }
+
+    public void setApplicant(Applicant applicant) {
+        this.applicant = applicant;
+    }
+
+   
+    
+
+    
     
 }

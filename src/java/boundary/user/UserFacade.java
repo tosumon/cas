@@ -6,7 +6,7 @@
 
 package boundary.user;
 
-import entities.user.UserBean;
+import entities.user.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
  * @author Atik
  */
 @Stateless
-public class UserBeanFacade extends AbstractFacade<UserBean> {
+public class UserFacade extends AbstractFacade<User> {
     @PersistenceContext(unitName = "ComproPUMySQL")
     private EntityManager em;
 
@@ -25,8 +25,8 @@ public class UserBeanFacade extends AbstractFacade<UserBean> {
         return em;
     }
 
-    public UserBeanFacade() {
-        super(UserBean.class);
+    public UserFacade() {
+        super(User.class);
     }
     
 }
