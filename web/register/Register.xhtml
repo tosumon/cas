@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Reg_Template.xhtml">
+
+            <ui:define name="top">
+                <h1>Registeration Form</h1>
+            </ui:define>
+
+            <ui:define name="content">
+              <h:form id="registerForm">
+                  <h:panelGrid columns="2">
+                <h:outputLabel value="First Name:"/>
+                <h:inputText value="#{registerMB.user.fname}"/> 
+                
+                
+                <h:outputLabel value="Last Name:"/>
+                <h:inputText value="#{registerMB.user.lname}"/>
+                
+                <h:outputLabel value="Email:"></h:outputLabel>
+                <h:inputText value="#{registerMB.user.email}" required="true" requiredMessage="Please enter Email!">
+               <f:validator validatorId="emailValidator" />
+                 <f:attribute name="confirm" value="#{confirm}" />
+               </h:inputText>
+ 
+            
+               <h:outputText value="Confirm Email :"></h:outputText>
+            
+               <h:inputText id="confirmemail" binding="#{confirm}" required="true" requiredMessage="Please Confirm Email!">
+               </h:inputText>
+               <h:panelGrid>
+                <h:commandButton value="Register" action="#{registerMB.makeRegistration}"/>
+                </h:panelGrid>
+            </h:panelGrid>
+            
+        </h:form> 
+            </ui:define>
+
+            <ui:define name="bottom">
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

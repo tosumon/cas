@@ -38,7 +38,7 @@ public class EmailValidator implements Validator {
         // No value is not ok
         if (o == null || "".equals((String) o)) {
             
-            ShowMessage.showValidatorException("No email value!", "Email Validation Error", FacesMessage.SEVERITY_ERROR);
+            ShowMessage.showValidatorException("Not valid email!", "Email Validation Error", FacesMessage.SEVERITY_ERROR);
             
         }
 
