@@ -19,7 +19,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class UserFacade extends AbstractFacade<User> {
-    @PersistenceContext(unitName = "Compro2PU")
+    @PersistenceContext(unitName = "MSCSmumDBpu")
     private EntityManager em;
 
     @Override
