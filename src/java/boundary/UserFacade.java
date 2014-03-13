@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package boundary;
 
 import boundary.user.AbstractFacade;
@@ -19,11 +18,8 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class UserFacade extends AbstractFacade<User> {
-<<<<<<< .mine
     @PersistenceContext(unitName = "ComproPUMySQL")
-=======
-    @PersistenceContext(unitName = "MSCSmumDBpu")
->>>>>>> .r25
+
     private EntityManager em;
 
     @Override
