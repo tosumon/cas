@@ -113,7 +113,7 @@
                                                 <h:outputLabel for="toeflYear" value="toeflYear" styleClass="requiredLbl"/>
                                                 <p:selectOneMenu id="toeflYear" value="#{ApplicationMB.applicant.englishProficiency.toefl.year}" style="width: 200px" required="true">  
                                                     <f:selectItem itemLabel="Select Year" itemValue="0" />  
-                                                    <f:selectItem itemLabel="Select Year" itemValue="1" />                                                                                          
+                                                    <f:selectItems value="#{YearGenerator.years}" />                                                                                            
                                                 </p:selectOneMenu>                                         
                                                 <h:outputLabel for="toeflScore" value="toeflScore" styleClass="requiredLbl"/>
                                                 <h:inputText id="toeflScore" label="toeflScore" value="#{ApplicationMB.applicant.englishProficiency.toefl.score}" required="true"/>                                        
@@ -188,8 +188,8 @@
                                         <f:selectItems value="#{CountryList.countries}" />                                                                                          
                                     </p:selectOneMenu> 
                                     
-                                    <h:outputLabel for="city" value="city" styleClass="requiredLbl"/>
-                                    <h:inputText id="city" label="city" value="#{ApplicationMB.applicant.educationHistory.city}" required="true"/>
+                                    <h:outputLabel for="instituteCity" value="instituteCity" styleClass="requiredLbl"/>
+                                    <h:inputText id="instituteCity" label="instituteCity" value="#{ApplicationMB.applicant.educationHistory.city}" required="true"/>
                                     
                                     <h:outputLabel for="fromDate" value="fromDate" styleClass="requiredLbl"/>
                                     <p:calendar id="fromDate" value="#{ApplicationMB.applicant.educationHistory.fromDate}" showOn="button" navigator="true"/>
@@ -208,6 +208,56 @@
                                     <h:outputLabel for="finalGpa" value="finalGpa" styleClass="requiredLbl"/>
                                     <h:inputText id="finalGpa" label="finalGpa" value="#{ApplicationMB.applicant.educationHistory.finalGpa}" required="true"/>
                                     
+                                   
+                                    
+                                </h:panelGrid>
+                            </p:tab>
+<!-- ====================================Professional Experience======================================-->
+                           <p:tab title="Professional Experience" id="professionalExperience">
+                                <p:messages/>
+                                <h:panelGrid columns="2">
+                                    <h:outputLabel for="companyName" value="companyName" styleClass="requiredLbl"/>
+                                    <h:inputText id="companyName" label="companyName" value="#{ApplicationMB.applicant.professionalExperience.companyName}" required="true"/>
+                                    
+                                    <h:outputLabel for="companyWebSite" value="companyWebSite" styleClass="requiredLbl"/>
+                                    <h:inputText id="companyWebSite" label="companyWebSite" value="#{ApplicationMB.applicant.professionalExperience.companyWebSite}" required="true"/>
+                                    
+                                    <h:outputLabel for="companyCity" value="companyCity" styleClass="requiredLbl"/>
+                                    <h:inputText id="companyCity" label="companyCity" value="#{ApplicationMB.applicant.professionalExperience.city}" required="true"/>
+                                    
+                                    <h:outputLabel for="expFromDate" value="expFromDate" styleClass="requiredLbl"/>
+                                    <p:calendar id="expFromDate" value="#{ApplicationMB.applicant.professionalExperience.fromDate}" showOn="button" navigator="true"/>
+                                    
+                                    <h:outputLabel for="expToDate" value="expToDate" styleClass="requiredLbl"/>
+                                    <p:calendar id="expToDate" value="#{ApplicationMB.applicant.professionalExperience.toDate}" showOn="button" navigator="true"/>
+                                    
+                                    <h:outputLabel for="position" value="position" styleClass="requiredLbl"/>
+                                    <h:inputText id="position" label="position" value="#{ApplicationMB.applicant.professionalExperience.position}" required="true"/>
+                                    
+                                    <h:outputLabel for="programmingTaskPercent" value="programmingTaskPercent" styleClass="requiredLbl"/>
+                                    <h:inputText id="programmingTaskPercent" label="programmingTaskPercent" value="#{ApplicationMB.applicant.professionalExperience.programmingTaskPercent}" required="true"/>
+                                    
+                                    <h:outputLabel for="dataStructureTaskPercent" value="dataStructureTaskPercent" styleClass="requiredLbl"/>
+                                    <h:inputText id="dataStructureTaskPercent" label="dataStructureTaskPercent" value="#{ApplicationMB.applicant.professionalExperience.dataStructureTaskPercent}" required="true"/>
+                                    
+                                    <h:outputLabel for="networkingTaskPercent" value="networkingTaskPercent" styleClass="requiredLbl"/>
+                                    <h:inputText id="networkingTaskPercent" label="networkingTaskPercent" value="#{ApplicationMB.applicant.professionalExperience.networkingTaskPercent}" required="true"/>
+                                    
+                                    <h:outputLabel for="dbAdminTaskPercent" value="dbAdminTaskPercent" styleClass="requiredLbl"/>
+                                    <h:inputText id="dbAdminTaskPercent" label="dbAdminTaskPercent" value="#{ApplicationMB.applicant.professionalExperience.dbAdminTaskPercent}" required="true"/>
+                                    
+                                    <h:outputLabel for="teachingTrainingTaskPercent" value="teachingTrainingTaskPercent" styleClass="requiredLbl"/>
+                                    <h:inputText id="teachingTrainingTaskPercent" label="teachingTrainingTaskPercent" value="#{ApplicationMB.applicant.professionalExperience.teachingTrainingTaskPercent}" required="true"/>
+                                    
+                                    <h:outputLabel for="managementTaskPercent" value="managementTaskPercent" styleClass="requiredLbl"/>
+                                    <h:inputText id="managementTaskPercent" label="managementTaskPercent" value="#{ApplicationMB.applicant.professionalExperience.managementTaskPercent}" required="true"/>
+                                    
+                                    <h:outputLabel for="othersName" value="othersName" styleClass="requiredLbl"/>
+                                    <h:inputText id="othersName" label="othersName" value="#{ApplicationMB.applicant.professionalExperience.othersName}" required="true"/>
+                                    
+                                    <h:outputLabel for="othersTaskPercent" value="othersTaskPercent" styleClass="requiredLbl"/>
+                                    <h:inputText id="othersTaskPercent" label="othersTaskPercent" value="#{ApplicationMB.applicant.professionalExperience.othersTaskPercent}" required="true"/>
+                                                                                                    
                                    
                                     
                                 </h:panelGrid>
