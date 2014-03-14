@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -23,7 +24,7 @@ public class PersonalData implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long personalDataId;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -39,14 +40,17 @@ public class PersonalData implements Serializable {
     private String emailAddress;
     private String skypeId;
     private String phone;
+    @OneToOne (mappedBy = "personalData")
+    private Applicant applicant;
 
-    public Long getId() {
-        return id;
+   
+    public Long getPersonalDataId() {
+        return personalDataId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setPersonalDataId(Long personalDataId) {
+        this.personalDataId = personalDataId;
+    }   
 
     public String getFirstName() {
         return firstName;
@@ -160,23 +164,31 @@ public class PersonalData implements Serializable {
         this.phone = phone;
     }
 
+    public Applicant getApplicant() {
+        return applicant;
+    }
+
+    public void setApplicant(Applicant applicant) {
+        this.applicant = applicant;
+    }
+
     
     
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (personalDataId != null ? personalDataId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the personalDataId fields are not set
         if (!(object instanceof PersonalData)) {
             return false;
         }
         PersonalData other = (PersonalData) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.personalDataId == null && other.personalDataId != null) || (this.personalDataId != null && !this.personalDataId.equals(other.personalDataId))) {
             return false;
         }
         return true;
@@ -184,7 +196,7 @@ public class PersonalData implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.user.PersonalData[ id=" + id + " ]";
+        return "entities.user.PersonalData[ personalDataId=" + personalDataId + " ]";
     }
     
 }

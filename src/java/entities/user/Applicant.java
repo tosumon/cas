@@ -7,10 +7,13 @@
 package entities.user;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 /**
@@ -21,22 +24,25 @@ import javax.persistence.OneToOne;
 public class Applicant implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-       
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
     private String firstName;
     private String lastName; 
     private String email;
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="personalDataId") 
     private PersonalData personalData;
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="englishProficiencyId") 
     private EnglishProficiency englishProficiency;
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="educationHistoryId") 
     private EducationHistory educationHistory;
-    @OneToOne
-    private ProfessionalExperience professionalExperience;
-            
-    
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="professionalExperienceId") 
+    private ProfessionalExperience professionalExperience; 
+       
 
     public Long getId() {
         return id;

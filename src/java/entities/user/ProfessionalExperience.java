@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -23,7 +24,7 @@ public class ProfessionalExperience implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long professionalExperienceId;
     
     private String companyName;
     private String companyWebSite;
@@ -42,14 +43,27 @@ public class ProfessionalExperience implements Serializable {
     private int othersName;
     private int othersTaskPercent;
     
-    public Long getId() {
-        return id;
+    
+    @OneToOne (mappedBy = "professionalExperience")
+    private Applicant applicant;
+
+    public Long getProfessionalExperienceId() {
+        return professionalExperienceId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setProfessionalExperienceId(Long professionalExperienceId) {
+        this.professionalExperienceId = professionalExperienceId;
     }
 
+    public Applicant getApplicant() {
+        return applicant;
+    }
+
+    public void setApplicant(Applicant applicant) {
+        this.applicant = applicant;
+    }
+    
+    
     public String getCompanyName() {
         return companyName;
     }
@@ -166,18 +180,18 @@ public class ProfessionalExperience implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (professionalExperienceId != null ? professionalExperienceId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the professionalExperienceId fields are not set
         if (!(object instanceof ProfessionalExperience)) {
             return false;
         }
         ProfessionalExperience other = (ProfessionalExperience) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.professionalExperienceId == null && other.professionalExperienceId != null) || (this.professionalExperienceId != null && !this.professionalExperienceId.equals(other.professionalExperienceId))) {
             return false;
         }
         return true;
@@ -185,7 +199,7 @@ public class ProfessionalExperience implements Serializable {
 
     @Override
     public String toString() {
-        return "boundary.user.ProfessionalExperience[ id=" + id + " ]";
+        return "boundary.user.ProfessionalExperience[ professionalExperienceId=" + professionalExperienceId + " ]";
     }
     
 }

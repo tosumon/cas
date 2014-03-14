@@ -8,10 +8,14 @@ package entities.user;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -23,7 +27,7 @@ public class EducationHistory implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long educationHistoryId;
 
     private String instituteName;
     private String degree;
@@ -36,16 +40,30 @@ public class EducationHistory implements Serializable {
     private Date toDate;
     private String grading;
     private String finalGpa;
-    private CsCourse csCourse;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "csCourseId")    
+    private CsCourse csCourse;    
     
-    public Long getId() {
-        return id;
+    @OneToOne (mappedBy = "educationHistory")
+    private Applicant applicant;
+
+    public Long getEducationHistoryId() {
+        return educationHistoryId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setEducationHistoryId(Long educationHistoryId) {
+        this.educationHistoryId = educationHistoryId;
     }
 
+    public Applicant getApplicant() {
+        return applicant;
+    }
+
+    public void setApplicant(Applicant applicant) {
+        this.applicant = applicant;
+    }
+
+    
     public String getInstituteName() {
         return instituteName;
     }
@@ -130,18 +148,18 @@ public class EducationHistory implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (educationHistoryId != null ? educationHistoryId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the educationHistoryId fields are not set
         if (!(object instanceof EducationHistory)) {
             return false;
         }
         EducationHistory other = (EducationHistory) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.educationHistoryId == null && other.educationHistoryId != null) || (this.educationHistoryId != null && !this.educationHistoryId.equals(other.educationHistoryId))) {
             return false;
         }
         return true;
@@ -149,7 +167,7 @@ public class EducationHistory implements Serializable {
 
     @Override
     public String toString() {
-        return "boundary.user.EducationHistory[ id=" + id + " ]";
+        return "boundary.user.EducationHistory[ educationHistoryId=" + educationHistoryId + " ]";
     }
     
 }

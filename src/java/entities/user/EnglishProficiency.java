@@ -7,10 +7,13 @@
 package entities.user;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 /**
@@ -22,24 +25,41 @@ public class EnglishProficiency implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long englishProficiencyId;
 
     private String readWriteAbility;
     private String speakingAbility;
     private String listeningAbility;
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="toeflId") 
     private TOEFL toefl;
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="greId") 
     private GRE gre;
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="ieltsId") 
     private IELTS ielts;
-    public Long getId() {
-        return id;
+    
+    @OneToOne (mappedBy = "englishProficiency")
+    private Applicant applicant;
+    
+
+    public Long getEnglishProficiencyId() {
+        return englishProficiencyId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setEnglishProficiencyId(Long englishProficiencyId) {
+        this.englishProficiencyId = englishProficiencyId;
     }
+
+    public Applicant getApplicant() {
+        return applicant;
+    }
+
+    public void setApplicant(Applicant applicant) {
+        this.applicant = applicant;   }
+    
+   
 
     public String getReadWriteAbility() {
         return readWriteAbility;
@@ -93,7 +113,7 @@ public class EnglishProficiency implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (englishProficiencyId != null ? englishProficiencyId.hashCode() : 0);
         return hash;
     }
 
@@ -104,7 +124,7 @@ public class EnglishProficiency implements Serializable {
             return false;
         }
         EnglishProficiency other = (EnglishProficiency) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.englishProficiencyId == null && other.englishProficiencyId != null) || (this.englishProficiencyId != null && !this.englishProficiencyId.equals(other.englishProficiencyId))) {
             return false;
         }
         return true;
@@ -112,7 +132,7 @@ public class EnglishProficiency implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.user.EnglishProficiency[ id=" + id + " ]";
+        return "entities.user.EnglishProficiency[ englishProficiencyId=" + englishProficiencyId + " ]";
     }
     
 }

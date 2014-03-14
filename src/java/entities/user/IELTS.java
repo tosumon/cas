@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -21,7 +22,7 @@ public class IELTS implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long ieltsId;
     private int year;
     private double overallScore;
     private double listeningScore;
@@ -29,13 +30,25 @@ public class IELTS implements Serializable {
     private double writingScore;
     private double speakingScore;
 
-    public Long getId() {
-        return id;
+    @OneToOne (mappedBy = "ielts")
+    private EnglishProficiency englishProficiency;
+
+    public Long getIeltsId() {
+        return ieltsId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIeltsId(Long ieltsId) {
+        this.ieltsId = ieltsId;
     }
+
+    public EnglishProficiency getEnglishProficiency() {
+        return englishProficiency;
+    }
+
+    public void setEnglishProficiency(EnglishProficiency englishProficiency) {
+        this.englishProficiency = englishProficiency;
+    }
+      
 
     public int getYear() {
         return year;
@@ -89,18 +102,18 @@ public class IELTS implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (ieltsId != null ? ieltsId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the ieltsId fields are not set
         if (!(object instanceof IELTS)) {
             return false;
         }
         IELTS other = (IELTS) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.ieltsId == null && other.ieltsId != null) || (this.ieltsId != null && !this.ieltsId.equals(other.ieltsId))) {
             return false;
         }
         return true;
@@ -108,7 +121,7 @@ public class IELTS implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.user.IELTS[ id=" + id + " ]";
+        return "entities.user.IELTS[ ieltsId=" + ieltsId + " ]";
     }
     
 }

@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -21,19 +22,29 @@ public class TOEFL implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long toeflId;
     private int year;
     private int score;
     
+    @OneToOne (mappedBy = "toefl")
+    private EnglishProficiency englishProficiency;
 
-    public Long getId() {
-        return id;
+    public Long getToeflId() {
+        return toeflId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setToeflId(Long toeflId) {
+        this.toeflId = toeflId;
     }
 
+    public EnglishProficiency getEnglishProficiency() {
+        return englishProficiency;
+    }
+
+    public void setEnglishProficiency(EnglishProficiency englishProficiency) {
+        this.englishProficiency = englishProficiency;
+    }
+   
     public int getYear() {
         return year;
     }
@@ -54,7 +65,7 @@ public class TOEFL implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (toeflId != null ? toeflId.hashCode() : 0);
         return hash;
     }
 
@@ -65,7 +76,7 @@ public class TOEFL implements Serializable {
             return false;
         }
         TOEFL other = (TOEFL) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.toeflId == null && other.toeflId != null) || (this.toeflId != null && !this.toeflId.equals(other.toeflId))) {
             return false;
         }
         return true;
@@ -73,7 +84,7 @@ public class TOEFL implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.user.TOEFL[ id=" + id + " ]";
+        return "entities.user.TOEFL[ toeflId=" + toeflId + " ]";
     }
     
 }
