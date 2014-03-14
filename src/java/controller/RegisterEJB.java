@@ -7,7 +7,7 @@
 package controller;
 
 import boundary.RegisterMB;
-import boundary.user.UserFacade;
+import boundary.UserFacade;
 import entities.user.User;
 import java.util.logging.Level;
 import java.util.logging.Logger;
