@@ -30,7 +30,7 @@ public class ProfessionalExperience implements Serializable {
     private String companyWebSite;
     private String city;
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date formDate;
+    private Date fromDate;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date toDate;
     private String position;
@@ -40,7 +40,7 @@ public class ProfessionalExperience implements Serializable {
     private int dbAdminTaskPercent;
     private int teachingTrainingTaskPercent;
     private int managementTaskPercent;
-    private int othersName;
+    private String othersName;
     private int othersTaskPercent;
     
     
@@ -88,14 +88,15 @@ public class ProfessionalExperience implements Serializable {
         this.city = city;
     }
 
-    public Date getFormDate() {
-        return formDate;
+    public Date getFromDate() {
+        return fromDate;
     }
 
-    public void setFormDate(Date formDate) {
-        this.formDate = formDate;
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
     }
 
+   
     public Date getToDate() {
         return toDate;
     }
@@ -160,14 +161,15 @@ public class ProfessionalExperience implements Serializable {
         this.managementTaskPercent = managementTaskPercent;
     }
 
-    public int getOthersName() {
+    public String getOthersName() {
         return othersName;
     }
 
-    public void setOthersName(int othersName) {
+    public void setOthersName(String othersName) {
         this.othersName = othersName;
     }
 
+    
     public int getOthersTaskPercent() {
         return othersTaskPercent;
     }
