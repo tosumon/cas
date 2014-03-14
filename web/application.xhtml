@@ -113,7 +113,7 @@
                                                 <h:outputLabel for="toeflYear" value="toeflYear" styleClass="requiredLbl"/>
                                                 <p:selectOneMenu id="toeflYear" value="#{ApplicationMB.applicant.englishProficiency.toefl.year}" style="width: 200px" required="true">  
                                                     <f:selectItem itemLabel="Select Year" itemValue="0" />  
-                                                    <f:selectItems value="#{YearGenerator.years}" />                                                                                          
+                                                    <f:selectItem itemLabel="Select Year" itemValue="1" />                                                                                          
                                                 </p:selectOneMenu>                                         
                                                 <h:outputLabel for="toeflScore" value="toeflScore" styleClass="requiredLbl"/>
                                                 <h:inputText id="toeflScore" label="toeflScore" value="#{ApplicationMB.applicant.englishProficiency.toefl.score}" required="true"/>                                        
@@ -219,15 +219,11 @@
                                     <h:outputText value="First Name"/>
                                     <h:outputText id="firstNameTxt"
                                                   value="#{ApplicationMB.applicant.personalData.firstName}" />
-                                    
+                                    <h:commandButton action="#{ApplicationMB.submitApplicaton}" value="Submit"/>
 
                                     <h:panelGroup/>
                                     
-                                    <p:commandButton id="submitButton"
-                                                     value="Submit"
-                                                     actionListener=
-                                                     "#{applicationController.saveApplication}"
-                                                     ajax="false"/>
+
                                 </h:panelGrid>
                             </p:tab>
                         </p:tabView>
