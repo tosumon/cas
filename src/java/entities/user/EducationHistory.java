@@ -39,7 +39,7 @@ public class EducationHistory implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date toDate;
     private String grading;
-    private String finalGpa;
+    private double finalGpa;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "csCourseId")    
     private CsCourse csCourse;    
@@ -128,14 +128,15 @@ public class EducationHistory implements Serializable {
         this.grading = grading;
     }
 
-    public String getFinalGpa() {
+    public double getFinalGpa() {
         return finalGpa;
     }
 
-    public void setFinalGpa(String finalGpa) {
+    public void setFinalGpa(double finalGpa) {
         this.finalGpa = finalGpa;
     }
 
+    
     public CsCourse getCsCourse() {
         return csCourse;
     }

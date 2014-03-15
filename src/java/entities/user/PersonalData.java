@@ -52,11 +52,12 @@ public class PersonalData implements Serializable {
         this.personalDataId = personalDataId;
     }   
 
-    public String getFirstName() {
+    public String getFirstName() {        
         return firstName;
     }
 
     public void setFirstName(String firstName) {
+        System.out.print("I am in First Name of PersonalData.java");
         this.firstName = firstName;
     }
 

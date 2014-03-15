@@ -25,11 +25,11 @@ public class Applicant implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
-    private String firstName;
-    private String lastName; 
+    private Long applicantId;
     private String email;
+    private String applicationStatus;
+    private String evaluationStatus; 
+    
     @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="personalDataId") 
     private PersonalData personalData;
@@ -42,32 +42,34 @@ public class Applicant implements Serializable {
     @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="professionalExperienceId") 
     private ProfessionalExperience professionalExperience; 
-       
 
-    public Long getId() {
-        return id;
+   
+    
+    public Long getApplicantId() {
+        return applicantId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setApplicantId(Long applicantId) {
+        this.applicantId = applicantId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getApplicationStatus() {
+        return applicationStatus;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setApplicationStatus(String applicationStatus) {
+        this.applicationStatus = applicationStatus;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getEvaluationStatus() {
+        return evaluationStatus;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setEvaluationStatus(String evaluationStatus) {
+        this.evaluationStatus = evaluationStatus;
     }
 
+    
     public String getEmail() {
         return email;
     }
@@ -112,18 +114,18 @@ public class Applicant implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (applicantId != null ? applicantId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the applicantId fields are not set
         if (!(object instanceof Applicant)) {
             return false;
         }
         Applicant other = (Applicant) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.applicantId == null && other.applicantId != null) || (this.applicantId != null && !this.applicantId.equals(other.applicantId))) {
             return false;
         }
         return true;
@@ -131,7 +133,7 @@ public class Applicant implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.user.Applicant[ id=" + id + " ]";
+        return "entities.user.Applicant[ applicantId=" + applicantId + " ]";
     }
     
 }
