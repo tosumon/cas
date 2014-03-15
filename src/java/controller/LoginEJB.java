@@ -37,10 +37,15 @@ public class LoginEJB {
             User userFromDB=this.findByUserName(user.getUserName());
              //to display the name of the logged in user
              firstName=userFromDB.getFname();
-             System.out.println(userFromDB.getPassword());
+          
              
              if(hashedPwd.equals(userFromDB.getPassword())){
+                    System.out.println(userFromDB.getPassword());
+                 if(userFromDB.getUserType().equalsIgnoreCase("Admin")){
+                     return "/admin/adHome";
+                 }else{
                   return "/login/login_return";
+                 }
              
              }
              
