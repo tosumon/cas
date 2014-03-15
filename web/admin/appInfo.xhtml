@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../login/Login_Template.xhtml">
+
+            <ui:define name="top">
+                admin top
+            </ui:define>
+
+            <ui:define name="left">
+                 welcome, <h2><h:outputText value="#{loginEJB.firstName}"/></h2>
+                <p> <h:link outcome="/application" value="application" /></p>
+                <p> 
+                    <h:form>       
+                        <h:commandLink value="Applicant" action="#{adminMB.getApplicantInfo}"/>         
+                    </h:form>
+            
+                </p>
+            </ui:define>
+
+            <ui:define name="content">
+                <!-- <h:outputText value="#{adminMB.applicant.personalData.cityOfLiving}"/>-->
+                
+                 <h:panelGrid columns="1" style="width: 100%">
+                        <p:tabView>
+ <!-- ====================================Personal Information======================================-->
+                            <p:tab title="Personal Information"
+                                   id="personalInfo">
+                                <p:panel header="Personal Information">
+                                    <p:messages/>
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel for="firstName" value="First Name" styleClass="requiredLbl"/>
+                                        <h:outputText id="firstName"  value="#{adminMB.applicant.personalData.firstName}" />
+                                        <h:outputLabel for="middleName" value="Middle Name" styleClass="optionalLbl"/>
+                                        <h:outputText id="middleName"  value="#{adminMB.applicant.personalData.middleName}"/>
+                                        <h:outputLabel for="lastName" value="Last Name" styleClass="requiredLbl"/>
+                                        <h:outputText id="lastName"  value="#{adminMB.applicant.personalData.lastName}" />  
+                                        <h:outputLabel for="sex" value="Gender" styleClass="requiredLbl"/>
+                                         <h:outputText id="sex"  value="#{adminMB.applicant.personalData.sex}" />  
+                                  
+                                         <h:outputLabel for="maritalStatus" value="Marital Status" styleClass="requiredLbl"/>
+                                         <h:outputText id="maritalStatus"  value="#{adminMB.applicant.personalData.maritalStatus}" />  
+                                       
+                                         <h:outputLabel for="dateOfBirth" value="Date Of Birth" styleClass="requiredLbl"/>  
+                                         <h:outputText id="dateOfBirth"  value="#{adminMB.applicant.personalData.dateOfBirth}" />
+                                        
+                                        <h:outputLabel for="countryOfCitizenship" value="Country Of Citizenship" styleClass="requiredLbl"/>  
+                                         <h:outputText id="countryOfCitizenship"  value="#{adminMB.applicant.personalData.countryOfCitizenship}" />
+                                     
+                                        <h:outputLabel for="countryOfBirth" value="Country Of Birth" styleClass="requiredLbl"/>  
+                                        <h:outputText id="countryOfBirth"  value="#{adminMB.applicant.personalData.countryOfBirth}" />
+                                      
+                                        <h:outputLabel for="cityOfLiving" value="City Of Living" styleClass="requiredLbl"/>
+                                        <h:outputText id="cityOfLiving"  value="#{adminMB.applicant.personalData.cityOfLiving}" />
+                                        
+                                        <h:outputLabel for="visaStatus" value="Visa Status" styleClass="requiredLbl"/>
+                                        
+                                        <h:outputText id="visaStatus"  value="#{adminMB.applicant.personalData.visaStatus}" />
+                                       
+                                        <h:outputLabel for="emailAddress" value="Email Address" styleClass="requiredLbl"/>
+                                        <h:outputText id="emailAddress"  value="#{adminMB.applicant.personalData.emailAddress}">
+                                        </h:outputText>
+                                        <h:outputLabel for="skypeId" value="Skype Id" styleClass="requiredLbl"/>
+                                        <h:outputText id="skypeId"  value="#{adminMB.applicant.personalData.skypeId}"/>
+                                        <h:outputLabel for="phone" value="Phone" styleClass="requiredLbl"/>
+                                        <h:outputText id="phone" value="#{adminMB.applicant.personalData.phone}" />
+                                    </h:panelGrid>
+                                    <p:separator />  
+                                </p:panel>
+                            </p:tab>
+ 
+                 <p:tab title="English Proficiency"
+                                   id="englishProficiency">
+                                <p:panel header="English Proficiency">
+                                    <p:messages/>
+                                    <h:panelGrid columns="2">
+                                        <h:outputLabel for="readWriteAbility" value="readWriteAbility" styleClass="requiredLbl"/>
+                                        <p:selectOneMenu id="readWriteAbility" value="#{ApplicationMB.applicant.englishProficiency.readWriteAbility}" style="width: 200px" required="true">  
+                                            <f:selectItem itemLabel="Select One" itemValue="0" />  
+                                            <f:selectItem itemLabel="Excelent" itemValue="Excelent" />  
+                                            <f:selectItem itemLabel="Fair" itemValue="Fair" />  
+                                            <f:selectItem itemLabel="Bad" itemValue="Bad" />                                             
+                                        </p:selectOneMenu>    
+                                        <h:outputLabel for="speakingAbility" value="speakingAbility" styleClass="requiredLbl"/>
+                                        <p:selectOneMenu id="speakingAbility" value="#{ApplicationMB.applicant.englishProficiency.speakingAbility}" style="width: 200px" required="true">  
+                                            <f:selectItem itemLabel="Select One" itemValue="0" />  
+                                            <f:selectItem itemLabel="Excelent" itemValue="Excelent" />  
+                                            <f:selectItem itemLabel="Fair" itemValue="Fair" />  
+                                            <f:selectItem itemLabel="Bad" itemValue="Bad" />                                             
+                                        </p:selectOneMenu>                                        
+                                        <h:outputLabel for="listeningAbility" value="listeningAbility" styleClass="requiredLbl"/>
+                                        <p:selectOneMenu id="listeningAbility" value="#{ApplicationMB.applicant.englishProficiency.listeningAbility}" style="width: 200px" required="true">  
+                                            <f:selectItem itemLabel="Select One" itemValue="0" />  
+                                            <f:selectItem itemLabel="Excelent" itemValue="Excelent" />  
+                                            <f:selectItem itemLabel="Fair" itemValue="Fair" />  
+                                            <f:selectItem itemLabel="Bad" itemValue="Bad" />                                             
+                                        </p:selectOneMenu>  
+                                    </h:panelGrid>
+                                    <p:accordionPanel>  
+                                        <p:tab title="TOEFL">  
+                                            <h:panelGrid columns="2">                                                   
+                                                <h:outputLabel for="toeflYear" value="toeflYear" styleClass="requiredLbl"/>
+                                                <p:selectOneMenu id="toeflYear" value="#{ApplicationMB.applicant.englishProficiency.toefl.year}" style="width: 200px" required="true">  
+                                                    <f:selectItem itemLabel="Select Year" itemValue="0" />  
+                                                    <f:selectItems value="#{YearGenerator.years}" />                                                                                            
+                                                </p:selectOneMenu>                                         
+                                                <h:outputLabel for="toeflScore" value="toeflScore" styleClass="requiredLbl"/>
+                                                <h:inputText id="toeflScore" label="toeflScore" value="#{ApplicationMB.applicant.englishProficiency.toefl.score}" required="true"/>                                        
+
+                                            </h:panelGrid>  
+                                        </p:tab>  
+                                        <p:tab title="IELTS">  
+                                            <h:panelGrid columns="2">  
+                                               
+                                                <h:outputLabel for="ieltsYear" value="ieltsYear" styleClass="requiredLbl"/>
+                                                <p:selectOneMenu id="ieltsYear" value="#{ApplicationMB.applicant.englishProficiency.ielts.year}" style="width: 200px" required="true">  
+                                                    <f:selectItem itemLabel="Select Year" itemValue="0" />  
+                                                    <f:selectItems value="#{YearGenerator.years}" />                                                                                          
+                                                </p:selectOneMenu>                                            
+                                                <h:outputLabel for="ieltsOverallScore" value="ieltsOverallScore" styleClass="requiredLbl"/>
+                                                <h:inputText id="ieltsOverallScore" label="ieltsOverallScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.overallScore}" required="true"/>
+                                                <h:outputLabel for="ieltsReadingScore" value="ieltsReadingScore" styleClass="requiredLbl"/>
+                                                <h:inputText id="ieltsReadingScore" label="ieltsReadingScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.readingScore}" required="true"/>
+                                                <h:outputLabel for="ieltsWritingScore" value="ieltsWritingScore" styleClass="requiredLbl"/>
+                                                <h:inputText id="ieltsWritingScore" label="ieltsWritingScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.writingScore}" required="true"/>                                        
+                                                <h:outputLabel for="ieltsSpeakingScore" value="ieltsSpeakingScore" styleClass="requiredLbl"/>
+                                                <h:inputText id="ieltsSpeakingScore" label="ieltsSpeakingScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.speakingScore}" required="true"/>
+
+                                            </h:panelGrid>  
+                                        </p:tab>  
+                                        <p:tab title="GRE">  
+                                            <h:panelGrid columns="2">                                                   
+                                                <h:outputLabel for="greYear" value="greYear" styleClass="requiredLbl"/>
+                                                <p:selectOneMenu id="greYear" value="#{ApplicationMB.applicant.englishProficiency.gre.year}" style="width: 200px" required="true" >  
+                                                    <f:selectItem itemLabel="Select Year" itemValue="0" />  
+                                                    <f:selectItems value="#{YearGenerator.years}" />                                                                                          
+                                                </p:selectOneMenu>                                                                        
+                                                <h:outputLabel for="greVerbalScore" value="greVerbalScore" styleClass="requiredLbl"/>
+                                                <h:inputText id="greVerbalScore" label="greVerbalScore" value="#{ApplicationMB.applicant.englishProficiency.gre.verbalScore}" required="true"/>                                        
+                                                <h:outputLabel for="greQuantitiveScore" value="greQuantitiveScore" styleClass="requiredLbl"/>
+                                                <h:inputText id="greQuantitiveScore" label="greQuantitiveScore" value="#{ApplicationMB.applicant.englishProficiency.gre.quantitiveScore}" required="true"/>                                        
+                                                <h:outputLabel for="greAnalyticalScore" value="greAnalyticalScore" styleClass="requiredLbl"/>
+                                                <h:inputText id="greAnalyticalScore" label="greAnalyticalScore" value="#{ApplicationMB.applicant.englishProficiency.gre.analyticalScore}" required="true"/>
+
+                                            </h:panelGrid>  
+                                        </p:tab>  
+                                    </p:accordionPanel>  
+
+                                </p:panel>
+                            </p:tab>
+                        </p:tabView>
+                 </h:panelGrid>
+            
+            </ui:define>
+
+            <ui:define name="bottom">
+               admin bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
