@@ -6,8 +6,10 @@
 package util;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -19,27 +21,43 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean(name = "YearGenerator")
 @RequestScoped
 public class YearGenerator {
+    //-----{if
+//    private Map<String, String> years = new HashMap<String, String>();
+//    int year = Calendar.getInstance().get(Calendar.YEAR);
+//    public YearGenerator() {
+//       for (int i = year -10; i<=year;i++){           
+//            years.put(""+i, ""+i);
+//       }           
+//    }
+//
+//    public Map<String, String> getYears() {
+//        return years;
+//    }
+//
+//    public void setYears(Map<String, String> years) {
+//        this.years = years;
+//    }
 
-    //private Map<Integer, Integer> years = new HashMap<Integer, Integer>();
-    private Map<String, String> years = new HashMap<String, String>();
+    //---else
+    private List<String> years = new ArrayList<>();
     int year = Calendar.getInstance().get(Calendar.YEAR);
     public YearGenerator() {
-       for (int i = year -10; i<=year;i++){
-           //years.put(new Integer(1), new Integer(2));
-            years.put(""+i, ""+i);
-       }
-           
+       for (int i = year -10; i<=year;i++){           
+            years.add(""+i);
+       }           
     }
-
-    public Map<String, String> getYears() {
+    
+    public List<String> getYears() {
         return years;
     }
 
-    public void setYears(Map<String, String> years) {
+    public void setYears(List<String> years) {
         this.years = years;
     }
-
     
+    
+    //----end if}
+
     
 
     
