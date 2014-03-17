@@ -6,12 +6,12 @@
 package presentation.reg;
 
 import controller.SearchController;
-import entities.user.Applicant;
+import java.util.List;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.model.DataModel;
-import javax.inject.Named;
+
 
 
 /**
@@ -19,7 +19,7 @@ import javax.inject.Named;
  * @author IS
  */
 @ManagedBean(name = "searchMB")
-@SessionScoped
+@RequestScoped
 public class SearchMB {    
      
     @EJB
@@ -28,6 +28,7 @@ public class SearchMB {
     
      private String keyword;
     private String searchBy;
+    private List results;
     
     public String getSearchBy() {
         return searchBy;
@@ -52,17 +53,18 @@ public class SearchMB {
    public SearchMB() {
     }
 
-    public DataModel<Applicant> search() {
+    public List search() {
         switch (this.getSearchBy()) {
             case "firstname":
-                return (DataModel<Applicant>) searchControl.searchByName(this.keyword);
+                results =searchControl.searchByName(this.keyword);
             case "country":
-                return (DataModel<Applicant>) searchControl.searchByCountry(this.keyword);
+                results =searchControl.searchByCountry(this.keyword);
             case "email":
-                return (DataModel<Applicant>) searchControl.searchByEmail(this.keyword);
+                results =searchControl.searchByEmail(this.keyword);
             default:
-                return (DataModel<Applicant>) searchControl.searchByAppStatus(this.keyword);
+                results =searchControl.searchByAppStatus(this.keyword);
         }
+        return results;
     }    
    
 }
