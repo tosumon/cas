@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      template="./template.xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"      
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>        
+        <link rel="stylesheet" type="text/css" href="/css/cssLayout.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/default.css"/>
+    </head>
+    <body> 
+        <ui:composition template="./../login/Login_Template.xhtml">
+       
+            <h2>Admission Staff page</h2>
+             <ui:define name="content">
+                
+                <h3>Search An Applicant</h3>
+                <h:form>
+                    <h:selectOneRadio id="searchBy" value="#{searchMB.serchBy}">
+                        <f:selectItem itemLabel="By Applicant Name" itemValue="firstname"></f:selectItem>
+                        <f:selectItem itemLabel="By Email Address" itemValue="email"></f:selectItem>
+                        <f:selectItem itemLabel="By country" itemValue="country"></f:selectItem>
+                        <f:selectItem itemLabel="By Applicant Status" itemValue="status"></f:selectItem>
+                    </h:selectOneRadio>
+                    <h:inputText id="keyword" value="#{searchMB.keyword}"></h:inputText>
+                    <h:commandButton id="search" value="Search" action="#{searchMB.search}"></h:commandButton><br></br><br></br>
+                    <h:commandButton id="listAll" value="List All Applicants" action="#{searchMB.searchAllApp()}"></h:commandButton>
+                
+                    
+                    <h:dataTable id="list" value="#{searchMB.results}" var="item">
+                    <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Name"/>
+                    </f:facet>
+                        <h:outputText value= "#{item.applicantId}" />
+                </h:column>
+                     </h:dataTable>
+                
+                </h:form>        
+             </ui:define>
+        </ui:composition>
+    </body>
+</html>
+
