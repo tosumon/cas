@@ -16,6 +16,8 @@
             <ui:define name="left">
                  welcome, <h2><h:outputText value="#{loginEJB.firstName}"/></h2>
                 <p> <h:link outcome="/application" value="application" /></p>
+                
+                <p> <h:link outcome="/search/search" value="Search Application" /></p>
                 <p> 
                     <h:form>       
                         <h:commandLink value="Applicant" action="#{adminMB.getApplicantInfo}"/>         
