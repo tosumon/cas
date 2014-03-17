@@ -28,4 +28,10 @@ public class AdminController {
        //System.out.println(applicant.getPersonalData().getCityOfLiving());
        return applicant;
      }
+     
+     public String updateApplicaton(Applicant applicant){
+        applicantFacade.edit(applicant);
+     return "adHome";   
+    }
+    
 }
