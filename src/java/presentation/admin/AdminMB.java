@@ -11,6 +11,7 @@ import controller.AdminController;
 import entities.user.Applicant;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 
@@ -25,6 +26,17 @@ public class AdminMB {
     private AdminController adminController;    
 
     private Applicant applicant;
+   
+    @ManagedProperty("#{param.updateId}")
+    private int updateId;
+
+    public int getUpdateId() {
+        return updateId;
+    }
+
+    public void setUpdateId(int updateId) {
+        this.updateId = updateId;
+    }
     
     public Applicant getApplicant() {
         return applicant;
@@ -35,11 +47,12 @@ public class AdminMB {
     }    
     
     public AdminMB() {
+        applicant=new Applicant();
        
     }
     
     public String getApplicantInfo(){
-     Applicant app=  adminController.getApplicantInfo(new Long(101));
+     Applicant app=  adminController.getApplicantInfo(new Long(3));
      if(null!=app){
          this.applicant=app;
          return "appInfo";
@@ -47,6 +60,17 @@ public class AdminMB {
         return "error";
     }
     
-     
+    public String updateApplicaton(){
+        
+       Applicant app=  adminController.getApplicantInfo(new Long(this.updateId));
+       app.setEvaluationStatus(this.applicant.getEvaluationStatus());
+       app.setApplicationStatus(this.applicant.getApplicationStatus());
+       adminController.updateApplicaton(app);
+       //getApplicantInfo();
+        //System.out.println("function called "+ updateId);
+        
+      //adminController.updateApplicaton(this.applicant);
+     return "adHome";   
+    }
     
 }
