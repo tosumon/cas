@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package presentation.admin;
+package presentation.reg;
 
 import controller.SearchController;
 import entities.user.Applicant;
-import entities.user.User;
-import java.util.ArrayList;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -29,55 +26,16 @@ public class SearchMB {
     private SearchController searchControl;
     
     
-    private Long id;
-    private String firstName;
-    private String country;
-    private String appStatus;
-    private String email;
-    private String keyword;
-    private String serchBy;
-
-    public String getSerchBy() {
-        return serchBy;
-    }
-
-    public void setSerchBy(String serchBy) {
-        this.serchBy = serchBy;
-    }
-    public List<Applicant> getResults() {
-        return results;
-    } 
+     private String keyword;
+    private String searchBy;
     
-
-    public void setResults(List<Applicant> results) {
-        this.results = results;
-    }
-    
-    private List<Applicant> results = new ArrayList<>();
-
-    public Long getId() {
-        return id;
+    public String getSearchBy() {
+        return searchBy;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }    
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }    
+    public void setSearchBy(String searchBy) {
+        this.searchBy = searchBy;
+    }       
 
     public String getKeyword() {
         return keyword;
@@ -87,50 +45,24 @@ public class SearchMB {
        this.keyword=keyword;
     }
 
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getAppStatus() {
-        return appStatus;
-    }
-
-    public void setAppStatus(String appStatus) {
-        this.appStatus = appStatus;
-    }   
-
     public SearchController getController() {
         return searchControl;
     }
 
-  
-
-    public SearchMB() {
+   public SearchMB() {
     }
 
-    public String search() {
-        System.out.println(this.getSerchBy()+" "+this.keyword);
-        // results=searchControl.searchByEmail(this.keyword);
-         //   System.out.println(this.keyword+" "+results.size());
-        
-        if (this.firstName != null) {
-            //return (DataModel<Applicant>) searchControl.searchByName(this.keyword);
-        } else if (this.country != null) {
-            
-            //return (DataModel<Applicant>) searchControl.searchByCountry(this.keyword);
-        } else if (this.getSerchBy().equalsIgnoreCase("email")) {
-            results=searchControl.searchByEmail(this.keyword);
-            System.out.println(this.keyword+" "+results.size()+" "+this.email);
-            //return (DataModel<Applicant>) searchControl.searchByEmail(this.keyword);
-        } else {
-            //return (DataModel<Applicant>) searchControl.searchByAppStatus(this.keyword);
+    public DataModel<Applicant> search() {
+        switch (this.getSearchBy()) {
+            case "firstname":
+                return (DataModel<Applicant>) searchControl.searchByName(this.keyword);
+            case "country":
+                return (DataModel<Applicant>) searchControl.searchByCountry(this.keyword);
+            case "email":
+                return (DataModel<Applicant>) searchControl.searchByEmail(this.keyword);
+            default:
+                return (DataModel<Applicant>) searchControl.searchByAppStatus(this.keyword);
         }
-        return "";
-    }      
+    }    
    
 }
