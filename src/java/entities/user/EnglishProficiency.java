@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -27,8 +28,11 @@ public class EnglishProficiency implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long englishProficiencyId;
 
+    @Size(min = 2, message = "Please select readWrite Ability" )
     private String readWriteAbility;
+    @Size(min = 2, message = "Please select speaking Ability" )
     private String speakingAbility;
+    @Size(min = 2, message = "Please select listening Ability" )
     private String listeningAbility;
     @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="toeflId") 

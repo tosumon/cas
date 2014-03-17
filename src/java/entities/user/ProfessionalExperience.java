@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 /**
  *
@@ -34,13 +36,20 @@ public class ProfessionalExperience implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date toDate;
     private String position;
+    @Range (min = 0, max=100, message = "Please enter valid range of programmingTaskPercent" )
     private int programmingTaskPercent;
+    @Range (min = 0, max=100, message = "Please enter valid range of dataStructureTaskPercent" )
     private int dataStructureTaskPercent;
+    @Range (min = 0, max=100, message = "Please enter valid range of networkingTaskPercent" )
     private int networkingTaskPercent;
+    @Range (min = 0, max=100, message = "Please enter valid range of dbAdminTaskPercent" )
     private int dbAdminTaskPercent;
+    @Range (min = 0, max=100, message = "Please enter valid range of teachingTrainingTaskPercent" )
     private int teachingTrainingTaskPercent;
+    @Range (min = 0, max=100, message = "Please enter valid range of managementTaskPercent" )
     private int managementTaskPercent;
     private String othersName;
+    @Range (min = 0, max=100, message = "Please enter valid range of othersTaskPercent" )    
     private int othersTaskPercent;
     
     

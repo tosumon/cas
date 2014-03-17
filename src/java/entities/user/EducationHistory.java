@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,14 +31,18 @@ public class EducationHistory implements Serializable {
     private Long educationHistoryId;
 
     private String instituteName;
+    @Size(min = 2, message = "Please select degree" )
     private String degree;
+    @Size(min = 2, message = "Please select subject Area" )
     private String subjectArea;
+    @Size(min = 2, message = "Please select country" )
     private String country;
     private String city;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fromDate;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date toDate;
+    @Size(min = 2, message = "Please select grading" )
     private String grading;
     private double finalGpa;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

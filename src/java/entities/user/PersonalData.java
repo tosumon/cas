@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -29,14 +31,20 @@ public class PersonalData implements Serializable {
     private String middleName;
     private String lastName;
     private String sex;
+    @Size(min = 2, message = "Please select marital status" )
     private String maritalStatus;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateOfBirth;
+    @Size(min = 2, message = "Please select country Of Citizenship" )
     private String countryOfCitizenship;
+    @Size(min = 2, message = "Please select country Of Birth" )
     private String countryOfBirth;
+    @Size(min = 2, message = "Please select country Of Living" )
     private String countryOfLiving;
     private String cityOfLiving;
-    private String visaStatus;
+    @Size(min = 2, message = "Please select visa Status" )
+    private String visaStatus;    
+    @Pattern(regexp = "[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+", message = "Email format is invalid.")
     private String emailAddress;
     private String skypeId;
     private String phone;
