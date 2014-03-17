@@ -13,8 +13,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import util.HashAndSalting;
+import util.SessionUtil;
 
 /**
  *
@@ -40,7 +44,10 @@ public class LoginEJB {
           
              
              if(hashedPwd.equals(userFromDB.getPassword())){
-                    System.out.println(userFromDB.getUserType());
+                    
+                HttpSession session=(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+                session.setAttribute("userBean", userFromDB);
+                 
                  if(userFromDB.getUserType().equalsIgnoreCase("Admin")){
                      return "/admin/adHome";
                  }else{
@@ -65,5 +72,11 @@ public class LoginEJB {
     public String getFirstName() {
         return firstName;
     }
+    
+    public String logout() {
+      HttpSession session = SessionUtil.getSession();
+      session.invalidate();
+      return "/login/login";
+   }
  
 }
