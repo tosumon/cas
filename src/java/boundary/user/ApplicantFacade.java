@@ -7,9 +7,11 @@
 package boundary.user;
 
 import entities.user.Applicant;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,8 +31,56 @@ public class ApplicantFacade extends AbstractFacade<Applicant> {
         super(Applicant.class);
     }
     
-    public void test(){
-        
+     public List<Applicant> findApplicantsByCountry(String country) {          
+       
+        try {
+           Query appQuery = em.createNamedQuery("Applicant.findByCountry");
+            appQuery.setParameter("country", country);
+            List<Applicant> foundApplicant = (List<Applicant>) appQuery.getResultList();           
+            return  foundApplicant;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+    
+     public List<Applicant> findApplicantsByName(String fname) {          
+       
+        try {
+            Query appQuery = em.createNamedQuery("Applicant.findByName");
+            appQuery.setParameter("firstName", fname);
+            List<Applicant> foundApplicant = (List<Applicant>) appQuery.getResultList();           
+            return  foundApplicant;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+     
+      public List<Applicant> findApplicantsByEmail(String email) {         
+       
+        try {
+            Query appQuery = em.createNamedQuery("Applicant.findByEmail");
+            appQuery.setParameter("email", email);
+            List<Applicant> foundApplicant = (List<Applicant>) appQuery.getResultList();           
+            return  foundApplicant;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+      
+       public List<Applicant> findApplicantsByAppStatus(String appStatus) {         
+       
+        try {
+            Query appQuery = em.createNamedQuery("Applicant.findByApplicationStatus");
+            appQuery.setParameter("applicationStatus", appStatus);
+            List<Applicant> foundApplicant = (List<Applicant>) appQuery.getResultList();           
+            return  foundApplicant;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
     
 }
