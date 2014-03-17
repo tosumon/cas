@@ -29,4 +29,8 @@ public class ApplicantFacade extends AbstractFacade<Applicant> {
         super(Applicant.class);
     }
     
+    public void test(){
+        
+    }
+    
 }
