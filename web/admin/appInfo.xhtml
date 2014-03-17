@@ -75,44 +75,35 @@
                                     <p:separator />  
                                 </p:panel>
                             </p:tab>
- 
+ <!-- ====================================English Proficiency======================================-->
                  <p:tab title="English Proficiency"
                                    id="englishProficiency">
                                 <p:panel header="English Proficiency">
                                     <p:messages/>
                                     <h:panelGrid columns="2">
-                                        <h:outputLabel for="readWriteAbility" value="readWriteAbility" styleClass="requiredLbl"/>
-                                        <p:selectOneMenu id="readWriteAbility" value="#{ApplicationMB.applicant.englishProficiency.readWriteAbility}" style="width: 200px" required="true">  
-                                            <f:selectItem itemLabel="Select One" itemValue="0" />  
-                                            <f:selectItem itemLabel="Excelent" itemValue="Excelent" />  
-                                            <f:selectItem itemLabel="Fair" itemValue="Fair" />  
-                                            <f:selectItem itemLabel="Bad" itemValue="Bad" />                                             
-                                        </p:selectOneMenu>    
-                                        <h:outputLabel for="speakingAbility" value="speakingAbility" styleClass="requiredLbl"/>
-                                        <p:selectOneMenu id="speakingAbility" value="#{ApplicationMB.applicant.englishProficiency.speakingAbility}" style="width: 200px" required="true">  
-                                            <f:selectItem itemLabel="Select One" itemValue="0" />  
-                                            <f:selectItem itemLabel="Excelent" itemValue="Excelent" />  
-                                            <f:selectItem itemLabel="Fair" itemValue="Fair" />  
-                                            <f:selectItem itemLabel="Bad" itemValue="Bad" />                                             
-                                        </p:selectOneMenu>                                        
-                                        <h:outputLabel for="listeningAbility" value="listeningAbility" styleClass="requiredLbl"/>
-                                        <p:selectOneMenu id="listeningAbility" value="#{ApplicationMB.applicant.englishProficiency.listeningAbility}" style="width: 200px" required="true">  
-                                            <f:selectItem itemLabel="Select One" itemValue="0" />  
-                                            <f:selectItem itemLabel="Excelent" itemValue="Excelent" />  
-                                            <f:selectItem itemLabel="Fair" itemValue="Fair" />  
-                                            <f:selectItem itemLabel="Bad" itemValue="Bad" />                                             
-                                        </p:selectOneMenu>  
-                                    </h:panelGrid>
-                                    <p:accordionPanel>  
+                                        <h:outputLabel for="readWriteAbility" value="Read Write Ability" styleClass="requiredLbl"/>
+                                         <h:outputText id="readWriteAbility" value="#{adminMB.applicant.englishProficiency.readWriteAbility}" />
+                                        
+                                         
+                                         <h:outputLabel for="speakingAbility" value="speakingAbility" styleClass="requiredLbl"/>
+                                         <h:outputText id="speakingAbility" value="#{adminMB.applicant.englishProficiency.speakingAbility}" />
+                                     
+                                         
+                                         <h:outputLabel for="listeningAbility" value="listeningAbility" styleClass="requiredLbl"/>
+                                         <h:outputText id="listeningAbility" value="#{adminMB.applicant.englishProficiency.listeningAbility}" />
+                                     
+                                    </h:panelGrid>   
+                                    
+                                    
+                                   <p:accordionPanel>  
                                         <p:tab title="TOEFL">  
                                             <h:panelGrid columns="2">                                                   
                                                 <h:outputLabel for="toeflYear" value="toeflYear" styleClass="requiredLbl"/>
-                                                <p:selectOneMenu id="toeflYear" value="#{ApplicationMB.applicant.englishProficiency.toefl.year}" style="width: 200px" required="true">  
-                                                    <f:selectItem itemLabel="Select Year" itemValue="0" />  
-                                                    <f:selectItems value="#{YearGenerator.years}" />                                                                                            
-                                                </p:selectOneMenu>                                         
+                                               <h:outputText id="toeflYear" value="#{adminMB.applicant.englishProficiency.toefl.year}" />
+                                               
+                                                
                                                 <h:outputLabel for="toeflScore" value="toeflScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="toeflScore" label="toeflScore" value="#{ApplicationMB.applicant.englishProficiency.toefl.score}" required="true"/>                                        
+                                                <h:outputText id="toeflScore"  value="#{adminMB.applicant.englishProficiency.toefl.score}"/>                                        
 
                                             </h:panelGrid>  
                                         </p:tab>  
@@ -120,41 +111,172 @@
                                             <h:panelGrid columns="2">  
                                                
                                                 <h:outputLabel for="ieltsYear" value="ieltsYear" styleClass="requiredLbl"/>
-                                                <p:selectOneMenu id="ieltsYear" value="#{ApplicationMB.applicant.englishProficiency.ielts.year}" style="width: 200px" required="true">  
-                                                    <f:selectItem itemLabel="Select Year" itemValue="0" />  
-                                                    <f:selectItems value="#{YearGenerator.years}" />                                                                                          
-                                                </p:selectOneMenu>                                            
+                                                <h:outputText id="ieltsYear"  value="#{adminMB.applicant.englishProficiency.ielts.year}"/>
+                                               
+                                                                                       
                                                 <h:outputLabel for="ieltsOverallScore" value="ieltsOverallScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="ieltsOverallScore" label="ieltsOverallScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.overallScore}" required="true"/>
+                                                <h:outputText id="ieltsOverallScore" value="#{adminMB.applicant.englishProficiency.ielts.overallScore}"/>
+                                                
                                                 <h:outputLabel for="ieltsReadingScore" value="ieltsReadingScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="ieltsReadingScore" label="ieltsReadingScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.readingScore}" required="true"/>
+                                                <h:outputText id="ieltsReadingScore" value="#{adminMB.applicant.englishProficiency.ielts.readingScore}"/>
+                                               
                                                 <h:outputLabel for="ieltsWritingScore" value="ieltsWritingScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="ieltsWritingScore" label="ieltsWritingScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.writingScore}" required="true"/>                                        
+                                                <h:outputText id="ieltsWritingScore"  value="#{adminMB.applicant.englishProficiency.ielts.writingScore}" />                                        
                                                 <h:outputLabel for="ieltsSpeakingScore" value="ieltsSpeakingScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="ieltsSpeakingScore" label="ieltsSpeakingScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.speakingScore}" required="true"/>
+                                                <h:outputText id="ieltsSpeakingScore"  value="#{adminMB.applicant.englishProficiency.ielts.speakingScore}" />
 
                                             </h:panelGrid>  
                                         </p:tab>  
                                         <p:tab title="GRE">  
                                             <h:panelGrid columns="2">                                                   
                                                 <h:outputLabel for="greYear" value="greYear" styleClass="requiredLbl"/>
-                                                <p:selectOneMenu id="greYear" value="#{ApplicationMB.applicant.englishProficiency.gre.year}" style="width: 200px" required="true" >  
-                                                    <f:selectItem itemLabel="Select Year" itemValue="0" />  
-                                                    <f:selectItems value="#{YearGenerator.years}" />                                                                                          
-                                                </p:selectOneMenu>                                                                        
+                                                 <h:outputText id="greYear"  value="#{adminMB.applicant.englishProficiency.gre.year}" />
+                                                         
                                                 <h:outputLabel for="greVerbalScore" value="greVerbalScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="greVerbalScore" label="greVerbalScore" value="#{ApplicationMB.applicant.englishProficiency.gre.verbalScore}" required="true"/>                                        
+                                                <h:outputText id="greVerbalScore"  value="#{adminMB.applicant.englishProficiency.gre.verbalScore}" />                                        
                                                 <h:outputLabel for="greQuantitiveScore" value="greQuantitiveScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="greQuantitiveScore" label="greQuantitiveScore" value="#{ApplicationMB.applicant.englishProficiency.gre.quantitiveScore}" required="true"/>                                        
+                                                <h:outputText id="greQuantitiveScore"  value="#{adminMB.applicant.englishProficiency.gre.quantitiveScore}" />                                        
                                                 <h:outputLabel for="greAnalyticalScore" value="greAnalyticalScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="greAnalyticalScore" label="greAnalyticalScore" value="#{ApplicationMB.applicant.englishProficiency.gre.analyticalScore}" required="true"/>
-
+                                                <h:outputText id="greAnalyticalScore" value="#{adminMB.applicant.englishProficiency.gre.analyticalScore}" />
                                             </h:panelGrid>  
                                         </p:tab>  
-                                    </p:accordionPanel>  
-
+                                    </p:accordionPanel> 
+                                
                                 </p:panel>
                             </p:tab>
+                       
+                        
+ 
+<!-- ====================================Education History======================================-->
+                           <p:tab title="Education History" id="educationHistory">
+                                <p:messages/>
+                                <h:panelGrid columns="2">
+                                    <h:outputLabel for="instituteName" value="instituteName" styleClass="requiredLbl"/>
+                                    <h:outputText id="instituteName" value="#{adminMB.applicant.educationHistory.instituteName}"/>
+                                    
+                                    <h:outputLabel for="degree" value="degree" styleClass="requiredLbl"/>
+                                    <h:outputText id="degree" value="#{adminMB.applicant.educationHistory.degree}"/>                                   
+                                                                                                            
+                                    
+                                    <h:outputLabel for="subjectArea" value="subjectArea" styleClass="requiredLbl"/>
+                                    <h:outputText id="subjectArea" value="#{adminMB.applicant.educationHistory.subjectArea}"/>
+                                                                        
+                                    <h:outputLabel for="country" value="country" styleClass="requiredLbl"/>
+                                    <h:outputText id="country" value="#{adminMB.applicant.educationHistory.country}"/>
+                                                                        
+                                    <h:outputLabel for="instituteCity" value="instituteCity" styleClass="requiredLbl"/>
+                                    <h:outputText id="instituteCity" value="#{adminMB.applicant.educationHistory.city}"/>
+                                    
+                                    <h:outputLabel for="fromDate" value="fromDate" styleClass="requiredLbl"/>
+                                    <h:outputText id="fromDate" value="#{adminMB.applicant.educationHistory.fromDate}"/>
+                                    
+                                    
+                                    <h:outputLabel for="toDate" value="toDate" styleClass="requiredLbl"/>
+                                    <h:outputText id="toDate" value="#{adminMB.applicant.educationHistory.toDate}"/>
+                                    
+                                    
+                                    <h:outputLabel for="grading" value="grading" styleClass="requiredLbl"/>
+                                    <h:outputText id="grading" value="#{adminMB.applicant.educationHistory.grading}"/>
+                                    
+                                    
+                                    <h:outputLabel for="finalGpa" value="finalGpa" styleClass="requiredLbl"/>
+                                    <h:outputText id="finalGpa" value="#{adminMB.applicant.educationHistory.finalGpa}"/>
+                                    
+                                   
+                                    
+                                </h:panelGrid>
+                            </p:tab>
+<!-- ====================================Professional Experience======================================-->
+                           <p:tab title="Professional Experience" id="professionalExperience">
+                                <p:messages/>
+                                <h:panelGrid columns="2">
+                                    <h:outputLabel for="companyName" value="companyName" styleClass="requiredLbl"/>
+                                    <h:outputText id="companyName" value="#{adminMB.applicant.professionalExperience.companyName}"/>
+                                    
+                                    <h:outputLabel for="companyWebSite" value="companyWebSite" styleClass="requiredLbl"/>
+                                    <h:outputText id="companyWebSite"  value="#{adminMB.applicant.professionalExperience.companyWebSite}"/>
+                                    
+                                    <h:outputLabel for="companyCity" value="companyCity" styleClass="requiredLbl"/>
+                                    <h:outputText id="companyCity"  value="#{adminMB.applicant.professionalExperience.city}"/>
+                                    
+                                    <h:outputLabel for="expFromDate" value="expFromDate" styleClass="requiredLbl"/>
+                                    <h:outputText id="expFromDate"  value="#{adminMB.applicant.professionalExperience.fromDate}"/>
+                                    
+                                                                    
+                                    <h:outputLabel for="expToDate" value="expToDate" styleClass="requiredLbl"/>
+                                    <h:outputText id="expToDate"  value="#{adminMB.applicant.professionalExperience.toDate}"/>
+                                    
+                                    
+                                    <h:outputLabel for="position" value="position" styleClass="requiredLbl"/>
+                                    <h:outputText id="position" value="#{adminMB.applicant.professionalExperience.position}"/>
+                                    
+                                </h:panelGrid>
+                                
+                                     <h:panelGrid title="Programming Experience" id="ProgrammingExp" columns="2">
+                                        <h:outputLabel for="programmingTaskPercent" value="programmingTaskPercent" styleClass="requiredLbl"/>
+                                        <h:outputText id="programmingTaskPercent"  value="#{adminMB.applicant.professionalExperience.programmingTaskPercent}" />
+
+                                        <h:outputLabel for="dataStructureTaskPercent" value="dataStructureTaskPercent" styleClass="requiredLbl"/>
+                                        <h:outputText id="dataStructureTaskPercent"  value="#{adminMB.applicant.professionalExperience.dataStructureTaskPercent}" />
+
+                                        <h:outputLabel for="networkingTaskPercent" value="networkingTaskPercent" styleClass="requiredLbl"/>
+                                        <h:outputText id="networkingTaskPercent"  value="#{adminMB.applicant.professionalExperience.networkingTaskPercent}" />
+
+                                        <h:outputLabel for="dbAdminTaskPercent" value="dbAdminTaskPercent" styleClass="requiredLbl"/>
+                                        <h:outputText id="dbAdminTaskPercent"  value="#{adminMB.applicant.professionalExperience.dbAdminTaskPercent}" />
+
+                                        <h:outputLabel for="teachingTrainingTaskPercent" value="teachingTrainingTaskPercent" styleClass="requiredLbl"/>
+                                        <h:outputText id="teachingTrainingTaskPercent"  value="#{adminMB.applicant.professionalExperience.teachingTrainingTaskPercent}" />
+
+                                        <h:outputLabel for="managementTaskPercent" value="managementTaskPercent" styleClass="requiredLbl"/>
+                                        <h:outputText id="managementTaskPercent"  value="#{adminMB.applicant.professionalExperience.managementTaskPercent}" />
+
+                                        <h:outputLabel for="othersName" value="othersName" styleClass="requiredLbl"/>
+                                        <h:outputText id="othersName"  value="#{adminMB.applicant.professionalExperience.othersName}" />
+
+                                        <h:outputLabel for="othersTaskPercent" value="othersTaskPercent" styleClass="requiredLbl"/>
+                                        <h:outputText id="othersTaskPercent"  value="#{adminMB.applicant.professionalExperience.othersTaskPercent}" />
+                                     </h:panelGrid>                                         
+                                
+                            </p:tab>
+<!-- ====================================Confirmation======================================-->
+                            <p:tab title="Update status" id="Update">                             
+                              <h:form>
+                                  <h:panelGrid id="updatPanel" columns="2">
+                                                                   
+                                    <h:outputLabel for="evaluationTxt" value="Current Evaluation" styleClass="requiredLbl"/>
+                                    <h:outputText id="evaluationTxt" value="#{adminMB.applicant.evaluationStatus}" />
+                                    
+                                    <h:outputLabel for="evaluationCmb" value="Set Evaluation" styleClass="requiredLbl"/>
+                                    <p:selectOneMenu id="evaluationCmb" value="#{adminMB.applicant.evaluationStatus}" style="width: 200px" required="true">  
+                                            <f:selectItem itemLabel="Accepted" itemValue="Accepted" />  
+                                            <f:selectItem itemLabel="Rejected" itemValue="Rejected" /> 
+                                            <f:selectItem itemLabel="Undecided" itemValue="Undecided" />
+                                    </p:selectOneMenu> 
+                                    
+                                    <h:outputLabel for="statusTxt" value="Current Status" styleClass="requiredLbl"/>
+                                    <h:outputText id="statusTxt" value="#{adminMB.applicant.applicationStatus}" />
+                                    
+                                    <h:outputLabel for="statusCmb" value="Set Status" styleClass="requiredLbl"/>
+                                    <p:selectOneMenu id="statusCmb" value="#{adminMB.applicant.applicationStatus}" style="width: 200px" required="true">  
+                                            <f:selectItem itemLabel="Unsubmitted" itemValue="Unsubmitted" />  
+                                            <f:selectItem itemLabel="Submitted" itemValue="submitted" />
+                                    </p:selectOneMenu> 
+                                    
+                                    
+                                    <h:commandButton action="#{adminMB.updateApplicaton}" value="Update">
+                                        <f:param name="updateId" value="#{adminMB.applicant.applicantId}" />
+                                        
+                                    </h:commandButton>
+
+                                </h:panelGrid>
+                                </h:form> 
+                                
+                            </p:tab>
+ 
+ 
+                        
+                        
                         </p:tabView>
                  </h:panelGrid>
             
