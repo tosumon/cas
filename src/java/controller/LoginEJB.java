@@ -40,7 +40,7 @@ public class LoginEJB {
           
              
              if(hashedPwd.equals(userFromDB.getPassword())){
-                    System.out.println(userFromDB.getPassword());
+                    System.out.println(userFromDB.getUserType());
                  if(userFromDB.getUserType().equalsIgnoreCase("Admin")){
                      return "/admin/adHome";
                  }else{
