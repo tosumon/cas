@@ -27,16 +27,17 @@
                                     <p:messages/>
                                     <h:panelGrid columns="2">
                                         <h:outputLabel for="firstName" value="First Name" styleClass="requiredLbl"/>
-                                        <h:inputText id="firstName" label="First Name" value="#{ApplicationMB.applicant.personalData.firstName}" required="true"/>
+                                        <h:inputText id="firstName" label="First Name" value="#{ApplicationMB.applicant.personalData.firstName}" required="true" requiredMessage="Please enter First Name"/>
                                         <h:outputLabel for="middleName" value="Middle Name" styleClass="optionalLbl"/>
-                                        <h:inputText id="middleName" label="Middle Name" value="#{ApplicationMB.applicant.personalData.middleName}"/>
+                                        <h:inputText id="middleName" label="Middle Name" value="#{ApplicationMB.applicant.personalData.middleName}" required="false" />
                                         <h:outputLabel for="lastName" value="Last Name" styleClass="requiredLbl"/>
-                                        <h:inputText id="lastName" label="Last Name" value="#{ApplicationMB.applicant.personalData.lastName}" required="true"/>  
+                                        <h:inputText id="lastName" label="Last Name" value="#{ApplicationMB.applicant.personalData.lastName}" required="true" requiredMessage="Please enter Last Name"/>  
                                         <h:outputLabel for="sex" value="Gender" styleClass="requiredLbl"/>
-                                        <p:selectOneMenu id="sex" value="#{ApplicationMB.applicant.personalData.sex}" style="width: 200px" required="true">  
+                                        <p:selectOneMenu id="sex" value="#{ApplicationMB.applicant.personalData.sex}" style="width: 200px" required="true" validatorMessage="Please select Gender">  
                                             <f:selectItem itemLabel="Select Gender" itemValue="0" />  
                                             <f:selectItem itemLabel="Male" itemValue="Male" />  
                                             <f:selectItem itemLabel="Female" itemValue="Female" /> 
+                                            <f:validateLength minimum="2"/>
                                         </p:selectOneMenu>                                         
                                         <h:outputLabel for="maritalStatus" value="maritalStatus" styleClass="requiredLbl"/>
                                         <p:selectOneMenu id="maritalStatus" value="#{ApplicationMB.applicant.personalData.maritalStatus}" style="width: 200px" required="true">  
@@ -45,7 +46,7 @@
                                             <f:selectItem itemLabel="Maried" itemValue="Maried" />                                             
                                         </p:selectOneMenu>                                         
                                         <h:outputLabel for="dateOfBirth" value="dateOfBirth" styleClass="requiredLbl"/>                                        
-                                        <p:calendar id="dateOfBirth" value="#{ApplicationMB.applicant.personalData.dateOfBirth}" showOn="button" navigator="true"/>
+                                        <p:calendar id="dateOfBirth" value="#{ApplicationMB.applicant.personalData.dateOfBirth}" showOn="button" navigator="true" required="true" requiredMessage="Please enter date of birth"/>
                                         <h:outputLabel for="countryOfCitizenship" value="countryOfCitizenship" styleClass="requiredLbl"/>                                       
                                         <p:selectOneMenu id="countryOfCitizenship" value="#{ApplicationMB.applicant.personalData.countryOfCitizenship}" style="width: 200px" required="true">  
                                             <f:selectItem itemLabel="Select Country" itemValue="0" />  
@@ -57,7 +58,7 @@
                                             <f:selectItems value="#{CountryList.countries}" />                                                                                          
                                         </p:selectOneMenu> 
                                         <h:outputLabel for="cityOfLiving" value="cityOfLiving" styleClass="requiredLbl"/>
-                                        <h:inputText id="cityOfLiving" label="cityOfLiving" value="#{ApplicationMB.applicant.personalData.cityOfLiving}" required="true"/>
+                                        <h:inputText id="cityOfLiving" label="cityOfLiving" value="#{ApplicationMB.applicant.personalData.cityOfLiving}" required="true" requiredMessage="Please enter city of living"/>
                                         <h:outputLabel for="visaStatus" value="visaStatus" styleClass="requiredLbl"/>
                                         <p:selectOneMenu id="visaStatus" value="#{ApplicationMB.applicant.personalData.visaStatus}" style="width: 200px" required="true">  
                                             <f:selectItem itemLabel="Select Status" itemValue="0" />  
@@ -67,13 +68,13 @@
                                             <f:selectItem itemLabel="Green Card" itemValue="GreenCard" />  
                                         </p:selectOneMenu>                                         
                                         <h:outputLabel for="emailAddress" value="emailAddress" styleClass="requiredLbl"/>
-                                        <h:inputText id="emailAddress" label="emailAddress" value="#{ApplicationMB.applicant.personalData.emailAddress}" required="true">
-                                            <f:validator validatorId="emailValidator2" />
+                                        <h:inputText id="emailAddress" label="emailAddress" value="#{ApplicationMB.applicant.personalData.emailAddress}" required="true" requiredMessage="Please enter emial address">
+                                            
                                         </h:inputText>
                                         <h:outputLabel for="skypeId" value="skypeId" styleClass="requiredLbl"/>
-                                        <h:inputText id="skypeId" label="skypeId" value="#{ApplicationMB.applicant.personalData.skypeId}" required="true"/>
+                                        <h:inputText id="skypeId" label="skypeId" value="#{ApplicationMB.applicant.personalData.skypeId}" required="false"/>
                                         <h:outputLabel for="phone" value="phone" styleClass="requiredLbl"/>
-                                        <p:inputMask id="phone" value="#{ApplicationMB.applicant.personalData.phone}" mask="(999) 999-9999" required="true"/>
+                                        <p:inputMask id="phone" value="#{ApplicationMB.applicant.personalData.phone}" mask="(999) 999-9999" required="true" requiredMessage="Please enter phone number"/>
                                     </h:panelGrid>
                                     <p:separator />  
                                 </p:panel>
@@ -111,12 +112,12 @@
                                         <p:tab title="TOEFL">  
                                             <h:panelGrid columns="2">                                                   
                                                 <h:outputLabel for="toeflYear" value="toeflYear" styleClass="requiredLbl"/>
-                                                <p:selectOneMenu id="toeflYear" value="#{ApplicationMB.applicant.englishProficiency.toefl.year}" style="width: 200px" required="true">  
+                                                <p:selectOneMenu id="toeflYear" value="#{ApplicationMB.applicant.englishProficiency.toefl.year}" style="width: 200px" required="false">  
                                                     <f:selectItem itemLabel="Select Year" itemValue="0" />  
                                                     <f:selectItems value="#{YearGenerator.years}" />                                                                                            
                                                 </p:selectOneMenu>                                         
                                                 <h:outputLabel for="toeflScore" value="toeflScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="toeflScore" label="toeflScore" value="#{ApplicationMB.applicant.englishProficiency.toefl.score}" required="true"/>                                        
+                                                <h:inputText id="toeflScore" label="toeflScore" value="#{ApplicationMB.applicant.englishProficiency.toefl.score}" required="false"/>                                        
 
                                             </h:panelGrid>  
                                         </p:tab>  
@@ -124,34 +125,41 @@
                                             <h:panelGrid columns="2">  
                                                
                                                 <h:outputLabel for="ieltsYear" value="ieltsYear" styleClass="requiredLbl"/>
-                                                <p:selectOneMenu id="ieltsYear" value="#{ApplicationMB.applicant.englishProficiency.ielts.year}" style="width: 200px" required="true">  
+                                                <p:selectOneMenu id="ieltsYear" value="#{ApplicationMB.applicant.englishProficiency.ielts.year}" style="width: 200px" required="false">  
                                                     <f:selectItem itemLabel="Select Year" itemValue="0" />  
                                                     <f:selectItems value="#{YearGenerator.years}" />                                                                                          
                                                 </p:selectOneMenu>                                            
                                                 <h:outputLabel for="ieltsOverallScore" value="ieltsOverallScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="ieltsOverallScore" label="ieltsOverallScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.overallScore}" required="true"/>
+                                                <h:inputText id="ieltsOverallScore" label="ieltsOverallScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.overallScore}" required="false">
+                                                    <f:validateLongRange minimum="0" maximum="9"/>
+                                                </h:inputText>    
                                                 <h:outputLabel for="ieltsReadingScore" value="ieltsReadingScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="ieltsReadingScore" label="ieltsReadingScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.readingScore}" required="true"/>
+                                                <h:inputText id="ieltsReadingScore" label="ieltsReadingScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.readingScore}" required="false">
+                                                    <f:validateLongRange minimum="0" maximum="9"/>
+                                                </h:inputText> 
                                                 <h:outputLabel for="ieltsWritingScore" value="ieltsWritingScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="ieltsWritingScore" label="ieltsWritingScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.writingScore}" required="true"/>                                        
+                                                <h:inputText id="ieltsWritingScore" label="ieltsWritingScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.writingScore}" required="false">                                        
+                                                    <f:validateLongRange minimum="0" maximum="9"/>
+                                                </h:inputText> 
                                                 <h:outputLabel for="ieltsSpeakingScore" value="ieltsSpeakingScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="ieltsSpeakingScore" label="ieltsSpeakingScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.speakingScore}" required="true"/>
-
+                                                <h:inputText id="ieltsSpeakingScore" label="ieltsSpeakingScore" value="#{ApplicationMB.applicant.englishProficiency.ielts.speakingScore}" required="false">
+                                                    <f:validateLongRange minimum="0" maximum="9"/>
+                                                </h:inputText> 
                                             </h:panelGrid>  
                                         </p:tab>  
                                         <p:tab title="GRE">  
                                             <h:panelGrid columns="2">                                                   
                                                 <h:outputLabel for="greYear" value="greYear" styleClass="requiredLbl"/>
-                                                <p:selectOneMenu id="greYear" value="#{ApplicationMB.applicant.englishProficiency.gre.year}" style="width: 200px" required="true" >  
+                                                <p:selectOneMenu id="greYear" value="#{ApplicationMB.applicant.englishProficiency.gre.year}" style="width: 200px" required="false" >  
                                                     <f:selectItem itemLabel="Select Year" itemValue="0" />  
                                                     <f:selectItems value="#{YearGenerator.years}" />                                                                                          
                                                 </p:selectOneMenu>                                                                        
                                                 <h:outputLabel for="greVerbalScore" value="greVerbalScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="greVerbalScore" label="greVerbalScore" value="#{ApplicationMB.applicant.englishProficiency.gre.verbalScore}" required="true"/>                                        
+                                                <h:inputText id="greVerbalScore" label="greVerbalScore" value="#{ApplicationMB.applicant.englishProficiency.gre.verbalScore}" required="false"/>                                        
                                                 <h:outputLabel for="greQuantitiveScore" value="greQuantitiveScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="greQuantitiveScore" label="greQuantitiveScore" value="#{ApplicationMB.applicant.englishProficiency.gre.quantitiveScore}" required="true"/>                                        
+                                                <h:inputText id="greQuantitiveScore" label="greQuantitiveScore" value="#{ApplicationMB.applicant.englishProficiency.gre.quantitiveScore}" required="false"/>                                        
                                                 <h:outputLabel for="greAnalyticalScore" value="greAnalyticalScore" styleClass="requiredLbl"/>
-                                                <h:inputText id="greAnalyticalScore" label="greAnalyticalScore" value="#{ApplicationMB.applicant.englishProficiency.gre.analyticalScore}" required="true"/>
+                                                <h:inputText id="greAnalyticalScore" label="greAnalyticalScore" value="#{ApplicationMB.applicant.englishProficiency.gre.analyticalScore}" required="false"/>
 
                                             </h:panelGrid>  
                                         </p:tab>  
@@ -164,7 +172,7 @@
                                 <p:messages/>
                                 <h:panelGrid columns="2">
                                     <h:outputLabel for="instituteName" value="instituteName" styleClass="requiredLbl"/>
-                                    <h:inputText id="instituteName" label="instituteName" value="#{ApplicationMB.applicant.educationHistory.instituteName}" required="true"/>
+                                    <h:inputText id="instituteName" label="instituteName" value="#{ApplicationMB.applicant.educationHistory.instituteName}" required="true" requiredMessage="Please enter instituition's name"/>
                                     
                                     <h:outputLabel for="degree" value="degree" styleClass="requiredLbl"/>
                                     <p:selectOneMenu id="degree" value="#{ApplicationMB.applicant.educationHistory.degree}" styleClass="requiredLbl" style="width: 200px" required="true">  
@@ -189,16 +197,16 @@
                                     </p:selectOneMenu> 
                                     
                                     <h:outputLabel for="instituteCity" value="instituteCity" styleClass="requiredLbl"/>
-                                    <h:inputText id="instituteCity" label="instituteCity" value="#{ApplicationMB.applicant.educationHistory.city}" required="true"/>
+                                    <h:inputText id="instituteCity" label="instituteCity" value="#{ApplicationMB.applicant.educationHistory.city}" required="true" requiredMessage="Please enter city"/>
                                     
                                     <h:outputLabel for="fromDate" value="fromDate" styleClass="requiredLbl"/>
-                                    <p:calendar id="fromDate" value="#{ApplicationMB.applicant.educationHistory.fromDate}" showOn="button" navigator="true"/>
+                                    <p:calendar id="fromDate" value="#{ApplicationMB.applicant.educationHistory.fromDate}" showOn="button" navigator="true" required="true" requiredMessage="Please enter from date"/>
                                     
                                     <h:outputLabel for="toDate" value="toDate" styleClass="requiredLbl"/>
-                                    <p:calendar id="toDate" value="#{ApplicationMB.applicant.educationHistory.toDate}" showOn="button" navigator="true"/>
+                                    <p:calendar id="toDate" value="#{ApplicationMB.applicant.educationHistory.toDate}" showOn="button" navigator="true" required="true" requiredMessage="Please enter to date"/>
                                     
                                     <h:outputLabel for="grading" value="grading" styleClass="requiredLbl"/>
-                                    <p:selectOneMenu id="grading" value="#{ApplicationMB.applicant.educationHistory.grading}" style="width: 200px" required="true">  
+                                    <p:selectOneMenu id="grading" value="#{ApplicationMB.applicant.educationHistory.grading}" style="width: 200px" required="true" >  
                                         <f:selectItem itemLabel="Select one" itemValue="0" />  
                                         <f:selectItem itemLabel="0 to 4" itemValue="0 to 4" />  
                                         <f:selectItem itemLabel="0 to 5" itemValue="0 to 5" /> 
@@ -206,7 +214,9 @@
                                     </p:selectOneMenu>   
                                     
                                     <h:outputLabel for="finalGpa" value="finalGpa" styleClass="requiredLbl"/>
-                                    <h:inputText id="finalGpa" label="finalGpa" value="#{ApplicationMB.applicant.educationHistory.finalGpa}" required="true"/>
+                                    <h:inputText id="finalGpa" label="finalGpa" value="#{ApplicationMB.applicant.educationHistory.finalGpa}" required="true" validatorMessage="Please enter to final GPA">
+                                        <f:validateDoubleRange minimum="1.0"/>
+                                    </h:inputText>
                                     
                                    
                                     
@@ -217,22 +227,22 @@
                                 <p:messages/>
                                 <h:panelGrid columns="2">
                                     <h:outputLabel for="companyName" value="companyName" styleClass="requiredLbl"/>
-                                    <h:inputText id="companyName" label="companyName" value="#{ApplicationMB.applicant.professionalExperience.companyName}" required="true"/>
+                                    <h:inputText id="companyName" label="companyName" value="#{ApplicationMB.applicant.professionalExperience.companyName}" required="true" requiredMessage="Please enter company name"/>
                                     
                                     <h:outputLabel for="companyWebSite" value="companyWebSite" styleClass="requiredLbl"/>
-                                    <h:inputText id="companyWebSite" label="companyWebSite" value="#{ApplicationMB.applicant.professionalExperience.companyWebSite}" required="true"/>
+                                    <h:inputText id="companyWebSite" label="companyWebSite" value="#{ApplicationMB.applicant.professionalExperience.companyWebSite}" required="true" requiredMessage="Please enter company web address"/>
                                     
                                     <h:outputLabel for="companyCity" value="companyCity" styleClass="requiredLbl"/>
-                                    <h:inputText id="companyCity" label="companyCity" value="#{ApplicationMB.applicant.professionalExperience.city}" required="true"/>
+                                    <h:inputText id="companyCity" label="companyCity" value="#{ApplicationMB.applicant.professionalExperience.city}" required="true" requiredMessage="Please enter company city"/>
                                     
                                     <h:outputLabel for="expFromDate" value="expFromDate" styleClass="requiredLbl"/>
-                                    <p:calendar id="expFromDate" value="#{ApplicationMB.applicant.professionalExperience.fromDate}" showOn="button" navigator="true"/>
+                                    <p:calendar id="expFromDate" value="#{ApplicationMB.applicant.professionalExperience.fromDate}" showOn="button" navigator="true" required="true" requiredMessage="Please enter form date"/>
                                     
                                     <h:outputLabel for="expToDate" value="expToDate" styleClass="requiredLbl"/>
-                                    <p:calendar id="expToDate" value="#{ApplicationMB.applicant.professionalExperience.toDate}" showOn="button" navigator="true"/>
+                                    <p:calendar id="expToDate" value="#{ApplicationMB.applicant.professionalExperience.toDate}" showOn="button" navigator="true" required="true" requiredMessage="Please enter to date"/>
                                     
                                     <h:outputLabel for="position" value="position" styleClass="requiredLbl"/>
-                                    <h:inputText id="position" label="position" value="#{ApplicationMB.applicant.professionalExperience.position}" required="true"/>
+                                    <h:inputText id="position" label="position" value="#{ApplicationMB.applicant.professionalExperience.position}" required="true" requiredMessage="Please enter position"/>
                                     
                                 </h:panelGrid>
                                  <p:panel header="Task / Responsibility Percentage (0 to 100%)" footer="Total % (Must total 100%)"> 
@@ -259,7 +269,8 @@
                                         <h:inputText id="othersName" label="othersName" value="#{ApplicationMB.applicant.professionalExperience.othersName}" required="false"/>
 
                                         <h:outputLabel for="othersTaskPercent" value="othersTaskPercent" styleClass="requiredLbl"/>
-                                        <h:inputText id="othersTaskPercent" label="othersTaskPercent" value="#{ApplicationMB.applicant.professionalExperience.othersTaskPercent}" required="true"/>
+                                        <h:inputText id="othersTaskPercent" label="othersTaskPercent" value="#{ApplicationMB.applicant.professionalExperience.othersTaskPercent}" required="false"/>
+                                        <h:inputHidden id ="errorMessage" value="errorMessage" validator="#{ApplicationMB.CommonValidator}"/>
                                      </h:panelGrid>                                         
                                 </p:panel>
                             </p:tab>
