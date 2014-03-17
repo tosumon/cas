@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 /**
@@ -21,6 +23,15 @@ import javax.persistence.OneToOne;
  * @author Atik
  */
 @Entity
+
+@NamedQueries({
+    @NamedQuery(name = "Applicant.findAll", query = "SELECT a FROM Applicant a"),
+    @NamedQuery(name = "Applicant.findByEmail", query = "SELECT a FROM Applicant a WHERE a.personalData.emailAddress = :email"),
+    @NamedQuery(name = "Applicant.findByApplicationStatus", query = "SELECT a FROM Applicant a WHERE a.applicationStatus = :appStatus"),
+    @NamedQuery(name = "Applicant.findByCountry", query = "SELECT a FROM Applicant a WHERE a.personalData.countryOfLiving = :country"),
+    @NamedQuery(name = "Applicant.findByFirstName", query = "SELECT a FROM Applicant a WHERE a.personalData.lastName= :lastName"),
+    @NamedQuery(name = "Applicant.updateSubmitStatus", query = "UPDATE Applicant a SET a.applicationStatus= 'saved' WHERE a.applicantId= :Id")
+})
 public class Applicant implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
