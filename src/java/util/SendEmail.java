@@ -67,6 +67,28 @@ public class SendEmail {
     this.sendEmail();
  
   }
+  
+  public void createEmailToken(String username, String password) throws AddressException,
+      MessagingException {
+    this.setMailServerProperties();
+    
+    String[] toEmails = { username };//username is email
+    String emailSubject = "Compro Registration - Reset Password Token";
+    String emailBody = "This is an email sent by <b>MUM Compro Registration System</b>.<p>Dear applicant,</p> <p>This is token use to reset your passowrd</p> <p><b>Token:</b>" +password+"</p></br>Go to this link: http://localhost:8080/EEMessage/faces/resetpassword.xhtml";
+ 
+    mailSession = Session.getDefaultInstance(emailProperties, null);
+    emailMessage = new MimeMessage(mailSession);
+ 
+    for (int i = 0; i < toEmails.length; i++) {
+      emailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmails[i]));
+    }
+ 
+    emailMessage.setSubject(emailSubject);
+    emailMessage.setContent(emailBody, "text/html");//for a html email
+    //emailMessage.setText(emailBody);// for a text email
+    this.sendEmail();
+ 
+  }
  
   public void sendEmail() throws AddressException, MessagingException {
  
@@ -76,6 +98,7 @@ public class SendEmail {
  
     Transport transport = mailSession.getTransport("smtp");
  
+    
     transport.connect(emailHost, fromUser, fromUserEmailPassword);
     transport.sendMessage(emailMessage, emailMessage.getAllRecipients());
     transport.close();
