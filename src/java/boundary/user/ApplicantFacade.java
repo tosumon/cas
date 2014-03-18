@@ -33,54 +33,27 @@ public class ApplicantFacade extends AbstractFacade<Applicant> {
     
      public List<Applicant> findApplicantsByCountry(String country) {          
        
-        try {
-           Query appQuery = em.createNamedQuery("Applicant.findByCountry");
-            appQuery.setParameter("country", country);
-            List<Applicant> foundApplicant = (List<Applicant>) appQuery.getResultList();           
-            return  foundApplicant;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+        return  em.createQuery("SELECT c FROM Applicant c WHERE c.personalData.countryOfCitizenship LIKE :fname").setParameter("fname", country).setMaxResults(100).getResultList();
     }
     
      public List<Applicant> findApplicantsByName(String fname) {          
-       
-        try {
-            Query appQuery = em.createNamedQuery("Applicant.findByName");
-            appQuery.setParameter("firstName", fname);
-            List<Applicant> foundApplicant = (List<Applicant>) appQuery.getResultList();           
-            return  foundApplicant;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+              
+       return  em.createQuery("SELECT c FROM Applicant c WHERE c.personalData.firstName LIKE :fname").setParameter("fname", fname).setMaxResults(100).getResultList();
+
     }
      
       public List<Applicant> findApplicantsByEmail(String email) {         
        
-        try {
-            Query appQuery = em.createNamedQuery("Applicant.findByEmail");
-            appQuery.setParameter("email", email);
-            List<Applicant> foundApplicant = (List<Applicant>) appQuery.getResultList();           
-            return  foundApplicant;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+       return  em.createQuery("SELECT c FROM Applicant c WHERE c.personalData.emailAddress LIKE :fname").setParameter("fname", email).setMaxResults(100).getResultList();
     }
       
        public List<Applicant> findApplicantsByAppStatus(String appStatus) {         
        
-        try {
-            Query appQuery = em.createNamedQuery("Applicant.findByApplicationStatus");
-            appQuery.setParameter("applicationStatus", appStatus);
-            List<Applicant> foundApplicant = (List<Applicant>) appQuery.getResultList();           
-            return  foundApplicant;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+        return  em.createQuery("SELECT c FROM Applicant c WHERE c.applicationStatus LIKE :fname").setParameter("fname", appStatus).setMaxResults(100).getResultList();
+    }
+       
+        public List<Applicant> findApplicantsByEvlStatus(String evlStatus) {         
+       return  em.createQuery("SELECT c FROM Applicant c WHERE c.evaluationStatus LIKE :fname").setParameter("fname", evlStatus).setMaxResults(100).getResultList();
     }
     
 }
