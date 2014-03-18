@@ -7,11 +7,12 @@
 
     <body>
 
-        <ui:composition template="./Login_Template.xhtml">
-
-            <ui:define name="top">
-              
+        <ui:composition template="../loginTemplate.xhtml">
+            <ui:define name="content">
+                This is content region
+                
             </ui:define>
+
 
             <ui:define name="left">
                 <p> <h4>welcome, <h:outputText value="#{loginEJB.firstName}"/></h4></p>
@@ -24,14 +25,9 @@
                  </h:form>
             </ui:define>
 
-            <ui:define name="content">
-            
-            </ui:define>
-
-            <ui:define name="bottom">
-             
-            </ui:define>
-
+           
+                
+                
         </ui:composition>
 
     </body>
