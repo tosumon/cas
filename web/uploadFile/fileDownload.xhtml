@@ -6,21 +6,26 @@
 
     <body>
 
-        <ui:composition template="./Reg_Template.xhtml">
+        <ui:composition template="./../login/Login_Template.xhtml">
 
             <ui:define name="top">
-               
+                top
+            </ui:define>
+
+            <ui:define name="left">
+                left
             </ui:define>
 
             <ui:define name="content">
-                <h4>  Registered successfully! check your email for login </h4>
-            
-                For login click 
-                <h:link outcome="/login/login" value="here" />
+                 <h:form>  
+                           <h:commandLink id="getDownload" value="Download Files"  
+                                          action="#{fileDownloadBean.downLoad}">  
+                               </h:commandLink>  
+                     </h:form>  
             </ui:define>
 
             <ui:define name="bottom">
-             
+                bottom
             </ui:define>
 
         </ui:composition>

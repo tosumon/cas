@@ -3,39 +3,63 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
         <ui:composition template="./Login_Template.xhtml">
 
             <ui:define name="top">
-                top
+              
             </ui:define>
 
             <ui:define name="left">
-                left
+               
             </ui:define>
 
             <ui:define name="content">
-               Here the password----
+              <!-- Here the passwod
                
-               Here the hashedpassword----
+               Here the hashedpassword
                
-               username entered ---
+               username entered
                <h:outputText value="#{loginMB.user.userName}"/>
-               password entered ---
+               password entered 
                <h:outputText value="#{loginMB.user.password}"/>
                              
-                 username from db----            
+                 username from db    -->       
+              <h:form>
+                  <p:messages/>
+                  <!--h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"></h:messages-->
+                  <p:panel>
+                      <h:panelGrid >
+                      Login error, try again!
+                      <h:outputLabel value="User Name:" styleClass="requiredLb1">
+                <h:inputText value="#{loginMB.user.userName}" required="true" requiredMessage="Please enter username!">
+                <!--f:validator validatorId="emailValidator" /-->
+                </h:inputText>
+                 </h:outputLabel>
+                <h:outputLabel value="Password:">
+                <h:inputSecret value="#{loginMB.user.password}" required="true" requiredMessage="Please enter password!"/>
+                
+                  </h:outputLabel>
+                
+               <p:commandButton value="Login" action="#{loginMB.authenticate}" ajax="false"/>
+            
+               <p><h:outputLabel value="New User?"/> 
+                   <h:commandLink value="Register Here"  action="/register/Register"/> </p>    
+             
                  
-                             
-
+                   
+                      </h:panelGrid>
+             </p:panel>
+        </h:form>    
                              
             </ui:define>
 
             <ui:define name="bottom">
-                bottom
+               
             </ui:define>
 
         </ui:composition>

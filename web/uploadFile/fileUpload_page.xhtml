@@ -7,29 +7,35 @@
 
     <body>
 
-        <ui:composition template="./Login_Template.xhtml">
+        <ui:composition template="./../login/Login_Template.xhtml">
 
             <ui:define name="top">
-              
+               
             </ui:define>
 
             <ui:define name="left">
-                <p> <h4>welcome, <h:outputText value="#{loginEJB.firstName}"/></h4></p>
-                <br/>
-                <h:link outcome="/uploadFile/fileUpload_page">Upload File</h:link>
-                
-                <!--h:link outcome="application_form">Submit Application</h:link-->
-                 <h:form>
-                     <h:commandLink value="Logout" action="#{loginEJB.logout}"/>
-                 </h:form>
+               
             </ui:define>
 
             <ui:define name="content">
-            
+               <h:form id="form" enctype="multipart/form-data" prependId="false">
+        
+                   <p><h:inputFile id="file" value="#{fileUploadMB.uploadedFile}"> 
+               <f:validator validatorId="FileUploadValidator" />
+               </h:inputFile>
+             </p>
+            <br/>
+       
+            <h:commandButton id="button" value="Upload" action="#{fileUploadMB.fileEntity}"/>
+       
+               
+       
+            <p><h:messages id="messages" /></p>
+           </h:form>
             </ui:define>
 
             <ui:define name="bottom">
-             
+                bottom
             </ui:define>
 
         </ui:composition>

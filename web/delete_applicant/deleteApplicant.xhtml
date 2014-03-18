@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <body>
+
+        <ui:composition template="./../login/Login_Template.xhtml">
+
+            <ui:define name="top">
+            
+            </ui:define>
+
+            <ui:define name="left">
+               
+            </ui:define>
+
+            <ui:define name="content">
+              <!--  <h:selectOneMenu value="entry_page">
+   	       <f:selectItem itemValue="" itemLabel="Email" />
+   	       <f:selectItem itemValue="" itemLabel="Applicant Id" />
+              </h:selectOneMenu>-->
+              
+              <h:form>
+                  <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"></h:messages>
+            
+
+                <h:outputLabel value="Email:"/>
+                <h:inputText value="#{deleteApplicantMB.user.email}" required="true" requiredMessage="Please enter username!"/>
+                <!--f:validator validatorId="emailValidator" /-->
+                
+                      
+            <h:panelGroup id="delete">
+                <h:commandButton value="Show Applicant" actionListener="#{deleteApplicantMB.retriveUser}" />
+          
+                 
+                
+                <h:dataTable value="#{deleteApplicantMB.userToDelete}" var="user">
+         <h:column>    				
+            <f:facet name="header">Applicant Id</f:facet>    				
+            #{user.userId}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Email</f:facet>
+            #{user.email}
+         </h:column>
+         <h:column>
+            <f:facet name="header">First Name</f:facet>
+            #{user.fname}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Last Name</f:facet>
+            #{user.lname}
+         </h:column>
+          <h:column>
+            <f:facet name="header">User Type</f:facet>
+            #{user.userType}
+         </h:column>            
+      </h:dataTable>
+                   
+               </h:panelGroup>
+             
+                  
+                  <h:panelGrid>
+                      <h:commandButton value="Cancel" action="#{deleteApplicantMB.cancelDelete}"/>
+                      <h:commandButton value="Delete" action="#{deleteApplicantMB.confirmDelete}"/>
+                  </h:panelGrid>
+            </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+               
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

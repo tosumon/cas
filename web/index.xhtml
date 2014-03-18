@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -17,11 +18,30 @@
             </ui:define>
 
             <ui:define name="content">
-                If you are a new user click 
-                <h:link outcome="register/Register" value="here" />
-                <p> If you are existing user click 
-                    <h:link outcome="login/login" value="here" /></p>
-                <p> <h:link outcome="application" value="application" /></p>
+                <h:form>
+                  <p:messages/>
+                  <!--h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"></h:messages-->
+                  <p:panel>
+                      <h:panelGrid >
+                          <h2>Login Form</h2>
+                      <h:outputLabel value="User Name:" styleClass="requiredLb1"/>
+                <h:inputText value="#{loginMB.user.userName}" required="true" requiredMessage="Please enter username!">
+                <!--f:validator validatorId="emailValidator" /-->
+                </h:inputText>
+                <h:outputText value="Password:"/>
+                <h:inputSecret value="#{loginMB.user.password}" required="true" requiredMessage="Please enter password!"/>
+                
+                 
+                
+               <p:commandButton value="Login" action="#{loginMB.authenticate}" ajax="false"/>
+            
+               <p><h:outputText value="New User?"/> 
+                   <h:link value="Register Here" outcome="/register/Register"/> </p>    
+             
+              
+                      </h:panelGrid>
+             </p:panel>
+        </h:form>
             </ui:define>
 
             <ui:define name="bottom">
@@ -30,13 +50,7 @@
 
         </ui:composition>
 
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+       
     </h:body>
 </html>
 

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../login/Login_Template.xhtml">
+
+            <ui:define name="top">
+              
+            </ui:define>
+
+            <ui:define name="left">
+                
+            </ui:define>
+
+            <ui:define name="content">
+                   <h:outputText value="Applicant Id:" binding="#{deleteApplicantMB.userToDelete.userId}"/>
+                <h:outputText value="Email:" binding="#{deleteApplicantMB.userToDelete.email}"/>
+                <h:outputText value="First Name:" binding="#{deleteApplicantMB.userToDelete.fname}"/>
+                <h:outputText value="Last Name:" binding="#{deleteApplicantMB.userToDelete.lname}"/>
+                <h:outputText value="Account Type:" binding="#{deleteApplicantMB.userToDelete.userType}"/>
+                
+                <h:commandButton value="Cancel" action="deleteApplicant"/>
+                <h:commandButton value="Delete" action="#{deleteApplicantMB.userDeleted}"/> 
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

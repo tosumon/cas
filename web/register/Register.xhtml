@@ -15,13 +15,14 @@
 
             <ui:define name="content">
               <h:form id="registerForm">
+                  <h:messages errorClass="errorMessage" infoClass="infoMessage" warnClass="warnMessage"></h:messages>
                   <h:panelGrid columns="2">
                 <h:outputLabel value="First Name:"/>
-                <h:inputText value="#{registerMB.user.fname}"/> 
+                <h:inputText value="#{registerMB.user.fname}" required="true" requiredMessage="Please enter first name!"/> 
                 
                 
                 <h:outputLabel value="Last Name:"/>
-                <h:inputText value="#{registerMB.user.lname}"/>
+                <h:inputText value="#{registerMB.user.lname}" required="true" requiredMessage="Please enter last name!"/>
                 
                 <h:outputLabel value="Email:"></h:outputLabel>
                 <h:inputText value="#{registerMB.user.email}" required="true" requiredMessage="Please enter Email!">

@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
 
 
     
-@WebFilter(filterName = "loginFilter", urlPatterns = {"/faces/admin/*","/faces/application.xhtml"})
+@WebFilter(filterName = "loginFilter", urlPatterns = {"/faces/admin/*","/faces/application.xhtml", "/faces/uploadFile/*"})
 public class LoginFilter implements Filter {
      
     public LoginFilter() {
