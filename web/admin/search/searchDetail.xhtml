@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h1>Applicant Detail</h1>
+        <h:form>
+            <h:dataTable value="#{searchMB.searchById()}" var="app">
+                <tr>
+                    <th align="left">Applicant ID:</th>
+                    <td>#{app.applicantId}</td>
+                </tr>
+                <tr>
+                    <th align="left">Applicant ID:</th>
+                    <td>#{app.evaluationStatus}</td>
+                </tr>
+                <tr>
+                    <th align="left">Applicant ID:</th>
+                    <td>#{app.applicationStatus}</td>
+                </tr>
+            </h:dataTable>
+            
+            <h3>Personal Data</h3>
+            <h:dataTable value="#{searchMB.searchById()}" var="app">
+                <tr>
+                    <th align="left">First Name:</th>
+                    <td>#{app.personalData.firstName}</td>
+                </tr>
+                <tr>
+                    <th align="left">Last Name:</th>
+                    <td>#{app.personalData.middleName}</td>
+                </tr> 
+                <tr>
+                    <th align="left">Last Name:</th>
+                    <td>#{app.personalData.lastName}</td>
+                </tr> 
+                <tr>
+                    <th align="left">Applicant ID:</th>
+                    <td>#{app.personalData.emailAddress}</td>
+                </tr>
+                <tr>
+                    <th align="left">First Name:</th>
+                    <td>#{app.personalData.maritalStatus}</td>
+                </tr>
+                <tr>
+                    <th align="left">Last Name:</th>
+                    <td>#{app.personalData.visaStatus}</td>
+                </tr>
+                <tr>
+                    <th align="left">Applicant ID:</th>
+                    <td>#{app.evaluationStatus}</td>
+                </tr>
+                <tr>
+                    <th align="left">First Name:</th>
+                    <td>#{app.personalData.cityOfLiving}</td>
+                </tr>
+                <tr>
+                    <th align="left">Last Name:</th>
+                    <td>#{app.personalData.dateOfBirth}</td>
+                </tr>
+                <tr>
+                    <th align="left">Applicant ID:</th>
+                    <td>#{app.personalData.phone}</td>
+                </tr>
+                <tr>
+                    <th align="left">First Name:</th>
+                    <td>#{app.personalData.skypeId}</td>
+                </tr>
+            </h:dataTable> 
+            
+            <h3>Educational History</h3>
+            <h:dataTable value="#{searchMB.searchById()}" var="app">
+                <tr>
+                    <th align="left">Last Name:</th>
+                    <td>#{app.educationHistory.degree}</td>
+                </tr>
+                <tr>
+                    <th align="left">Applicant ID:</th>
+                    <td>#{app.educationHistory.finalGpa}</td>
+                </tr>
+                <tr>
+                    <th align="left">First Name:</th>
+                    <td>#{app.educationHistory.instituteName}</td>
+                </tr>
+                <tr>
+                    <th align="left">Last Name:</th>
+                    <td>#{app.educationHistory.csCourse}</td>
+                </tr>
+            </h:dataTable> 
+            
+            
+            <h3>English Proficiency</h3>
+            <h:dataTable value="#{searchMB.searchById()}" var="app">
+                <tr>
+                    <th align="left">Applicant ID:</th>
+                    <td>#{app.englishProficiency.ielts}</td>
+                </tr>
+                <tr>
+                    <th align="left">First Name:</th>
+                    <td>#{app.englishProficiency.toefl}</td>
+                </tr>
+                <tr>
+                    <th align="left">Last Name:</th>
+                    <td>#{app.englishProficiency.gre}</td>
+                </tr>
+                <tr>
+                    <th align="left">Applicant ID:</th>
+                    <td>#{app.englishProficiency.listeningAbility}</td>
+                </tr>
+                <tr>
+                    <th align="left">First Name:</th>
+                    <td>#{app.englishProficiency.readWriteAbility}</td>
+                </tr>
+                <tr>
+                    <th align="left">Last Name:</th>
+                    <td>#{app.englishProficiency.speakingAbility}</td>
+                </tr>
+            </h:dataTable> 
+            
+            <h3>Professional Experience</h3>
+            <h:dataTable value="#{searchMB.searchById()}" var="app">
+                <tr>
+                    <th align="left">Applicant ID:</th>
+                    <td>#{app.professionalExperience.companyName}</td>
+                </tr>
+                <tr>
+                    <th align="left">First Name:</th>
+                    <td>#{app.professionalExperience.programmingTaskPercent}</td>
+                </tr>
+                <tr>
+                    <th align="left">Last Name:</th>
+                    <td>#{app.professionalExperience.fromDate}</td>
+                </tr>
+                <tr>
+                    <th align="left">Applicant ID:</th>
+                    <td>#{app.professionalExperience.toDate}</td>
+                </tr>
+                <tr>
+                    <th align="left">First Name:</th>
+                    <td>#{app.professionalExperience.position}</td>
+                </tr>                
+            </h:dataTable> 
+            <h:commandButton value="Back" action="searchResult" />
+        </h:form>
+    </h:body>
+</html>
+

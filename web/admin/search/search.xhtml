@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      template="./template.xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"      
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>        
+        <link rel="stylesheet" type="text/css" href="/css/cssLayout.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/default.css"/>
+    </head>
+    <body> 
+        <ui:composition template="../../login/Login_Template.xhtml">
+
+              <ui:define name="left">
+                 welcome, <h2><h:outputText value="#{loginEJB.firstName}"/></h2>
+               <p> <h:link outcome="/admin/search/search" value="Search Application" /></p>
+                <p> 
+                    <h:form>       
+                        <p><h:commandLink value="Applicant" action="#{adminMB.getApplicantInfo}"/></p>
+                        <p><h:commandLink value="Logout" action="#{loginEJB.logout()}"/></p>
+                    </h:form>
+            
+                </p>
+            </ui:define>
+            <ui:define name="content">
+
+                <h3>Search  Application</h3>
+                <h:form>
+                    <h:selectOneRadio id="searchBy" value="#{searchMB.searchBy}">
+                        <f:selectItem itemLabel="By First Name" itemValue="firstname"></f:selectItem>
+                        <f:selectItem itemLabel="By Email Address" itemValue="email"></f:selectItem>
+                        <f:selectItem itemLabel="By country" itemValue="country"></f:selectItem>
+                        <f:selectItem itemLabel="By Evaluation Status" itemValue="evlStatus"></f:selectItem>
+                         <f:selectItem itemLabel="By Application Status" itemValue="appStatus"></f:selectItem>
+                    </h:selectOneRadio>
+                    <p:panelGrid columns="2">
+                    <p:outputLabel for="fName" value="First Name: " styleClass="requiredLbl"/>  
+                    <p:inputText id="fName" value="#{searchMB.fName}"></p:inputText>
+                    
+                    <p:outputLabel for="email" value="Email: " styleClass="requiredLbl"/>  
+                    <p:inputText id="email" value="#{searchMB.email}"></p:inputText>
+                    
+                    
+                    <p:outputLabel for="countryOfCitizenship" value="Country Of Citizenship" styleClass="requiredLbl"/>  
+                      <p:selectOneMenu id="countryOfCitizenship" value="#{searchMB.countryCtz}" style="width: 200px">  
+                                            <f:selectItem itemLabel="Select Country" itemValue="0" />  
+                                            <f:selectItems value="#{CountryList.countries}" />                                                                                          
+                      </p:selectOneMenu>
+                    
+                    <p:outputLabel for="evaluationCmb" value="Evaluation status" styleClass="requiredLbl"/>
+                                    <p:selectOneMenu id="evaluationCmb" value="#{searchMB.evaluationStatus}" style="width: 200px" >  
+                                            <f:selectItem itemLabel="Accepted" itemValue="Accepted" />  
+                                            <f:selectItem itemLabel="Rejected" itemValue="Rejected" /> 
+                                            <f:selectItem itemLabel="Undecided" itemValue="Undecided" />
+                                    </p:selectOneMenu>                  
+                    
+                    <p:outputLabel for="statusCmb" value="Application status" styleClass="requiredLbl"/>
+                                    <p:selectOneMenu id="statusCmb" value="#{searchMB.applicationStatus}" style="width: 200px">  
+                                            <f:selectItem itemLabel="Unsubmitted" itemValue="Unsubmitted" />  
+                                            <f:selectItem itemLabel="Submitted" itemValue="submitted" />
+                    </p:selectOneMenu>
+                     
+                     </p:panelGrid>
+                    
+                    <p><h:commandButton id="search" value="Search" action="#{searchMB.search()}"></h:commandButton></p>
+
+                </h:form>
+
+                    <p:dataTable value="#{searchMB.results}" var="app">                        
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="First Name"/>
+                            </f:facet>
+                            <h:outputText value="#{app.personalData.firstName}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Last Name"/>
+                            </f:facet>
+                            <h:outputText value="#{app.personalData.lastName}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Date of Birth"/>
+                            </f:facet>
+                            <h:outputText value="#{app.personalData.dateOfBirth}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email address"/>
+                            </f:facet>
+                            <h:outputText value="#{app.personalData.emailAddress}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Gender"/>
+                            </f:facet>
+                            <h:outputText value="#{app.personalData.sex}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Country"/>
+                            </f:facet>
+                            <h:outputText value="#{app.personalData.countryOfLiving}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Evaluation status"/>
+                            </f:facet>
+                            <h:outputText value="#{app.evaluationStatus}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Application Status"/>
+                            </f:facet>
+                            <h:outputText value="#{app.applicationStatus}"/>
+                        </p:column>  
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                             <h:form id="bttn">
+                                
+                               <h:commandLink value="View Applicantion" action="#{adminMB.getApplicantInfo(app)}"/>
+                             
+                            </h:form>
+                        </p:column>
+                    </p:dataTable> 
+                    
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

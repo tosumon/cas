@@ -15,12 +15,11 @@
 
             <ui:define name="left">
                  welcome, <h2><h:outputText value="#{loginEJB.firstName}"/></h2>
-                <p> <h:link outcome="/application" value="application" /></p>
-                
-                <p> <h:link outcome="/search/search" value="Search Application" /></p>
+               <p> <h:link outcome="/admin/search/search" value="Search Application" /></p>
                 <p> 
                     <h:form>       
-                        <h:commandLink value="Applicant" action="#{adminMB.getApplicantInfo}"/>         
+                        <p><h:commandLink value="Applicant" action="#{adminMB.getApplicantInfo}"/></p>
+                        <p><h:commandLink value="Logout" action="#{loginEJB.logout()}"/></p>
                     </h:form>
             
                 </p>
