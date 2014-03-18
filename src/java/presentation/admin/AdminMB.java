@@ -52,12 +52,22 @@ public class AdminMB {
     }
     
     public String getApplicantInfo(){
+      
      Applicant app=  adminController.getApplicantInfo(new Long(3));
      if(null!=app){
          this.applicant=app;
-         return "appInfo";
+         return "/admin/appInfo";
      }
-        return "error";
+        return "/admin/error";
+    }
+    
+    public String getApplicantInfo(Applicant app){     
+    
+     if(null!=app){
+         this.applicant=app;
+         return "/admin/appInfo";
+     }
+        return "/admin/error";
     }
     
     public String updateApplicaton(){
@@ -66,11 +76,8 @@ public class AdminMB {
        app.setEvaluationStatus(this.applicant.getEvaluationStatus());
        app.setApplicationStatus(this.applicant.getApplicationStatus());
        adminController.updateApplicaton(app);
-       //getApplicantInfo();
-        //System.out.println("function called "+ updateId);
-        
-      //adminController.updateApplicaton(this.applicant);
-     return "adHome";   
+       
+       return "/admin/search/search";   
     }
     
 }
