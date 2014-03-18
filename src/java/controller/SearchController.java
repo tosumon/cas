@@ -51,6 +51,9 @@ public class SearchController {
         return appFacade.findApplicantsByAppStatus(appStatus);
     }
      
+     public List<Applicant> searchByEvlStatus(String evlStatus) {
+        return appFacade.findApplicantsByEvlStatus(evlStatus);
+    }
     
      
 }
