@@ -27,3 +27,8 @@ a:link:hover, a:visited:hover  {
   font-weight : bold;
   text-decoration : underline;
 }
+
+.errorColor{
+    color:red;
+    font-size: 16px;
+}
