@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import util.HashAndSalting;
 import util.RandomPasswordGenerator;
 import util.SendEmail;
 
@@ -77,7 +78,8 @@ public class ApplicantView {
         if(this.retypeEmail == null ? this.user.getEmail() == null : this.retypeEmail.equals(this.user.getEmail())){
             try {
             String password = RandomPasswordGenerator.generatePswd(6, 20, 2, 2, 2).toString();
-            this.user.setPassword(password);
+            String hashedPassword=HashAndSalting.get_SHA_1_SecurePassword(password, HashAndSalting.getSalt());
+            this.user.setPassword(hashedPassword);
             this.userFacade.create(user);
             SendEmail sendE = new SendEmail();
             
@@ -126,6 +128,7 @@ public class ApplicantView {
                 }
                 catch (Exception ex) {
                     Logger.getLogger(ApplicantView.class.getName()).log(Level.SEVERE, null, ex);
+                    return "ReceiveEmailForgetPass";
                 }
             }                 
         }
