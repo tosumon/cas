@@ -10,22 +10,19 @@
     <h:body>
         <ui:composition template="../preLoginTemplate.xhtml">
             <ui:define name="right">
-                
+        <p style="font-size:16px">
         <strong>Password Help</strong><br/>
+        
         <f:view>
             <h:form>
-                <h:outputLabel value="Email "/><h:inputText value="#{ApplicantView.emailForgetPass}"/><br/>
-                <h:commandButton action="#{ApplicantView.submitEmailForgetPass}" value="Continue"/> 
-                
-               <!-- <h:commandButton  value="Cancle"/>  
-                
-               <h:link value="Cancel" outcome="index"/> -->
+                <h:outputLabel value="Email "/><h:inputText value="#{ApplicantView.emailForgetPass}"/><br/><br/>
+                <h:commandButton action="#{ApplicantView.submitEmailForgetPass}" value="Continue" class="myButton"/> 
                 
             </h:form>
             
             
         </f:view>
-        
+        </p>
             </ui:define>
         </ui:composition>
         
