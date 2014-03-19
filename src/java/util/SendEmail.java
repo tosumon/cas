@@ -52,7 +52,7 @@ public class SendEmail {
 
       String[] toEmails = {username};//username is email
       String emailSubject = "Compro Registration System";
-      String emailBody = "This is an email sent by <b>MUM Compro Registration System</b>.<p>Dear applicant,</p> <p>Use the following credentials for login</p>  <p><b>username:</b>" + username + "</p> <p><b>password:</b>" + password + "</p";
+      String emailBody = "This is an email sent by <b>MUM Compro Registration System</b>.<p>Dear applicant,</p> <p>Use the following credentials for login</p>  <p><b>username:</b>" + username + "</p> <p><b>password:</b>" + password + "</p>";
 
       mailSession = Session.getDefaultInstance(emailProperties, null);
       emailMessage = new MimeMessage(mailSession);
