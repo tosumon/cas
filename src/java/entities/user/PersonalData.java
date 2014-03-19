@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -26,7 +27,7 @@ public class PersonalData implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long personalDataId;
+    private Long personalDataId;    
     private String firstName;
     private String middleName;
     private String lastName;
@@ -51,7 +52,18 @@ public class PersonalData implements Serializable {
     @OneToOne (mappedBy = "personalData")
     private Applicant applicant;
 
-   
+   public PersonalData (){
+       this.setFirstName("Atik");
+       this.setMiddleName("Atik");
+       this.setLastName("Atik");
+       this.setSex("Atik");
+       this.setMaritalStatus("Atik");
+       this.setDateOfBirth(new Date("3/17/2014"));
+       this.setCityOfLiving("Cth");
+       this.setEmailAddress("aaa@as.dd");
+       this.setSkypeId("dsds");
+       this.setPhone("1111111111");
+   }
     public Long getPersonalDataId() {
         return personalDataId;
     }

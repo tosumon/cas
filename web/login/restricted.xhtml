@@ -7,23 +7,19 @@
 
     <body>
 
-        <ui:composition template="./Login_Template.xhtml">
+ <ui:composition template="../loginTemplate.xhtml">
 
-            <ui:define name="top">
-                top
-            </ui:define>
-
+            
             <ui:define name="left">
-                left
+                
             </ui:define>
 
             <ui:define name="content">
                 <b> You do not have required permission</b>
+                <p><h:commandLink action="/faces/index.xhtml" value="Login"/></p>
             </ui:define>
 
-            <ui:define name="bottom">
-                bottom
-            </ui:define>
+            
 
         </ui:composition>
 

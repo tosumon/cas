@@ -11,33 +11,36 @@
             
 
             <ui:define name="left">
-                <p> <h4>welcome, <h:outputText value="#{loginEJB.firstName}"/></h4></p>
+                <p> <h4>welcome, <h:outputText value="#{loginMB.loggedName}"/></h4></p>
                 <br/>
                 
                  <h:form>
-                     <h:commandLink value="Logout" action="#{loginEJB.logout}"/>
+                     <h:commandLink value="Logout" action="#{loginMB.logout()}"/>
                  </h:form> 
                 
                
             </ui:define>
 
+             
             <ui:define name="content">
-               <h:form id="form" enctype="multipart/form-data" prependId="false">
+               <h:form  enctype="multipart/form-data" prependId="false">
         
-                   <p><h:inputFile id="file" value="#{fileUploadMB.uploadedFile}"> 
-               <f:validator validatorId="FileUploadValidator" />
+               <h:inputFile id="file" value="#{fileUploadMB.uploadedFile}"> 
+                    <f:validator validatorId="FileUploadValidator" />
                </h:inputFile>
-             </p>
-            <br/>
-       
+                   <br/>
+                               
+               
             <h:commandButton id="button" value="Upload" action="#{fileUploadMB.fileEntity}"/>
        
                
        
             <p><h:messages id="messages" /></p>
-           </h:form>
+           
+               </h:form>
             </ui:define>
 
+          
         </ui:composition>
 
     </body>

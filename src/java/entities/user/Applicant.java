@@ -14,8 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 /**
@@ -23,12 +21,12 @@ import javax.persistence.OneToOne;
  * @author Atik
  */
 @Entity
-
 public class Applicant implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)   
     private Long applicantId;
+    @Id
     private String email;
     private String applicationStatus;
     private String evaluationStatus; 
@@ -117,18 +115,18 @@ public class Applicant implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (applicantId != null ? applicantId.hashCode() : 0);
+        hash += (email != null ? email.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the applicantId fields are not set
+        // TODO: Warning - this method won't work in the case the email fields are not set
         if (!(object instanceof Applicant)) {
             return false;
         }
         Applicant other = (Applicant) object;
-        if ((this.applicantId == null && other.applicantId != null) || (this.applicantId != null && !this.applicantId.equals(other.applicantId))) {
+        if ((this.email == null && other.email != null) || (this.email != null && !this.email.equals(other.email))) {
             return false;
         }
         return true;

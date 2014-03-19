@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
 
 
     
-@WebFilter(filterName = "loginFilter", urlPatterns = {"/faces/admin/*","/faces/application.xhtml", "/faces/uploadFile/*"})
+//@WebFilter(filterName = "loginFilter", urlPatterns = {"/faces/admin/*","/faces/application.xhtml", "/faces/uploadFile/*"})
 public class LoginFilter implements Filter {
      
     public LoginFilter() {
@@ -49,15 +49,15 @@ public class LoginFilter implements Filter {
              
             
              
-            if ( (ses != null && ses.getAttribute("userBean") != null)){
-                User user=(User)ses.getAttribute("userBean");
+            if ( (ses != null && ses.getAttribute("User") != null)){
+                User user=(User)ses.getAttribute("User");
                  if(reqURI.contains("admin") && !user.getUserType().equalsIgnoreCase("Admin")){//Todo
                   res.sendRedirect(req.getContextPath() + "/faces/login/restricted.xhtml");  // Anonymous user. Redirect to login page
                  }
                    chain.doFilter(request, response);
             }
             else   // user didn't log in but asking for a page that is not allowed so take user to login page
-                   res.sendRedirect(req.getContextPath() + "/faces/login/login.xhtml");  // Anonymous user. Redirect to login page
+                   res.sendRedirect(req.getContextPath() + "/faces/index.xhtml");  // Anonymous user. Redirect to login page
       }
      catch(Throwable t) {
          System.out.println( t.getMessage());

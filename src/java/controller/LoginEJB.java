@@ -8,10 +8,14 @@ package controller;
 
 import boundary.LoginMB;
 import boundary.UserFacade;
+import boundary.user.ApplicantFacade;
+import entities.user.Applicant;
 import entities.user.User;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -25,25 +29,30 @@ import util.SessionUtil;
  * @author atinkut
  */
 @Named
-@Stateless
+@Stateful
 public class LoginEJB {
 
     @EJB
     UserFacade userFacade;
-    String firstName;
-    public String makeAuthentication(User user){
-    try {
-             
+    @EJB
+     ApplicantFacade applicantFacade;
+    //String firstName;
+    User userFromDB;
+    public Boolean makeAuthentication(User user) throws NoSuchAlgorithmException{
+   
+            System.out.println("method is called"); 
             String password=user.getPassword();
             String  hashedPwd=HashAndSalting.get_SHA_1_SecurePassword(password, HashAndSalting.getSalt());
             user.setPassword(hashedPwd);
+             System.out.println("method is called"+hashedPwd); 
              //query the password in DB
-            User userFromDB=this.findByUserName(user.getUserName());
+            userFromDB=this.findByUserName(user.getUserName());
+            System.out.println("method is called"+userFromDB.getEmail()); 
              //to display the name of the logged in user
-             firstName=userFromDB.getFname();
+             //firstName=userFromDB.getFname();
           
-             
-             if(hashedPwd.equals(userFromDB.getPassword())){
+             return hashedPwd.equals(userFromDB.getPassword());
+            /* if(hashedPwd.equals(userFromDB.getPassword())){
                     
                 HttpSession session=(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 session.setAttribute("userBean", userFromDB);
@@ -60,18 +69,56 @@ public class LoginEJB {
          } catch (Exception ex) {
              Logger.getLogger(LoginMB.class.getName()).log(Level.SEVERE, null, ex);
          }
-         return "/login/login_error";
+         return "/login/login_error";*/
     }
     
+   
+   //retrive application status
+    public String applicationStatus(String email){
+    Applicant applicant=(Applicant)applicantFacade.find(email);
+        if(applicant==null)
+           return "login_application_form";
+          //email exists means applicant started application
+             //check for the status of the application form
+        if(applicant.getApplicationStatus().equalsIgnoreCase("submitted"))
+               return "";
+        if(applicant.getApplicationStatus().equalsIgnoreCase("saved")){
+            //retrive the saved application form for editting and return it
+         }
+        return "";
+  }
+ //retrive evaluation status
+    String emailTocheck="";
+   public String evaluationStatus(String email){
+       emailTocheck=email;
+        Applicant applicant=(Applicant)applicantFacade.find(email);
+             if(applicant==null)
+                   return "";//application form is returned above in application status for null, no need to return again
+           //email exists means application started
+            //check for the evaluation status
+           if(applicant.getApplicationStatus().equalsIgnoreCase("saved"))
+                 return "";//since it is not yet submitted
+                else//status could be determined and returned
+              return "login_evaluation_status";
+
+               }
+ 
+   public String evaluationStatus(){
+   Applicant applicant=(Applicant) applicantFacade.find(emailTocheck);
+   return applicant.getEvaluationStatus();
+   } 
+
 
  public User findByUserName(String usr){
      
          return userFacade.find(usr);
  }
 
-    public String getFirstName() {
-        return firstName;
+    
+    public User getUserFromDB() {
+        return userFromDB;
     }
+    
     
     public String logout() {
       HttpSession session = SessionUtil.getSession();

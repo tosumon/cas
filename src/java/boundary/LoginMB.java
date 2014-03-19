@@ -9,10 +9,16 @@ package boundary;
 
 import controller.LoginEJB;
 import entities.user.User;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
+import util.SessionUtil;
 
 /**
  *
@@ -25,8 +31,12 @@ public class LoginMB {
    
     @EJB
     private LoginEJB loginEJB;
+    
     private User user=new User();
+    String loggedName;
+    
     public LoginMB() {
+        
     }
     
      public User getUser() {
@@ -64,9 +74,51 @@ public class LoginMB {
     public User getUserFromDB() {
         return userFromDB;
     }
+
+    public String getLoggedName() {
+        return loggedName;
+    }
     
-    public String authenticate(){
-       return loginEJB.makeAuthentication(user);
+     //HttpSession session;
+    public String authenticate() throws NoSuchAlgorithmException{
+        System.out.println("LoginMB" +user.getUserName());
+        System.out.println("LoginMB"+user.getPassword());
+        Boolean isUserExist=loginEJB.makeAuthentication(user);
+        System.out.println(isUserExist);
+        if(isUserExist)
+            {
+                loggedName=loginEJB.getUserFromDB().getFname();  
+                System.out.println("logged user"+loggedName);
+                 HttpSession session=(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+                session.setAttribute("User", loginEJB.getUserFromDB());
+                //session.s
+                 
+                 if(loginEJB.getUserFromDB().getUserType().equalsIgnoreCase("Admin")){
+                     return "/admin/adHome";
+                 }else{
+                  return "/login/login_return";
+                 }
+             
+             }
+             
+            
+         else
+         return "/login/login_error";
     
 }
+    //String loggedName=loginEJB.getUserFromDB().getFname();
+     public String logout() {
+      HttpSession session = SessionUtil.getSession();
+      session.invalidate();
+      return "/login/login";
+   }
+      //get application status and evaluation status 
+     public String applicationStatus(){
+      return loginEJB.applicationStatus(user.getEmail());
+
+} 
+     public String evaluationStatus(){
+          return loginEJB.evaluationStatus(user.getEmail());
+}
+    
 }

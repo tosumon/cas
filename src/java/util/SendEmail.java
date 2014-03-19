@@ -48,23 +48,23 @@ public class SendEmail {
  
   public void createEmailMessage(String username, String password) throws AddressException,
       MessagingException {
-    this.setMailServerProperties();
-    
-    String[] toEmails = { username };//username is email
-    String emailSubject = "Compro Registration System";
-    String emailBody = "This is an email sent by <b>MUM Compro Registration System</b>.<p>Dear applicant,</p> <p>Use the following credentials for login</p>  <p><b>username:</b>" +username+"</p> <p><b>password:</b>" +password+"</p";
- 
-    mailSession = Session.getDefaultInstance(emailProperties, null);
-    emailMessage = new MimeMessage(mailSession);
- 
-    for (int i = 0; i < toEmails.length; i++) {
-      emailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmails[i]));
-    }
- 
-    emailMessage.setSubject(emailSubject);
-    emailMessage.setContent(emailBody, "text/html");//for a html email
-    //emailMessage.setText(emailBody);// for a text email
-    this.sendEmail();
+      this.setMailServerProperties();
+
+      String[] toEmails = {username};//username is email
+      String emailSubject = "Compro Registration System";
+      String emailBody = "This is an email sent by <b>MUM Compro Registration System</b>.<p>Dear applicant,</p> <p>Use the following credentials for login</p>  <p><b>username:</b>" + username + "</p> <p><b>password:</b>" + password + "</p";
+
+      mailSession = Session.getDefaultInstance(emailProperties, null);
+      emailMessage = new MimeMessage(mailSession);
+
+      for (int i = 0; i < toEmails.length; i++) {
+          emailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmails[i]));
+      }
+
+      emailMessage.setSubject(emailSubject);
+      emailMessage.setContent(emailBody, "text/html");//for a html email
+      //emailMessage.setText(emailBody);// for a text email
+      this.sendEmail();
  
   }
   
@@ -103,6 +103,26 @@ public class SendEmail {
     transport.sendMessage(emailMessage, emailMessage.getAllRecipients());
     transport.close();
     System.out.println("Email sent successfully.");
+  }
+  
+  public void sendEmailMessage(String toEmail, String emailSubject, String emailBody) throws AddressException,
+      MessagingException {
+      this.setMailServerProperties();
+
+     // String toEmails = "username";//username is email
+      
+      mailSession = Session.getDefaultInstance(emailProperties, null);
+      emailMessage = new MimeMessage(mailSession);
+
+      for (int i = 0; i < toEmail.length(); i++) {
+          emailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+      }
+
+      emailMessage.setSubject(emailSubject);
+      emailMessage.setContent(emailBody, "text/html");//for a html email
+      //emailMessage.setText(emailBody);// for a text email
+      this.sendEmail();
+ 
   }
     
 }
