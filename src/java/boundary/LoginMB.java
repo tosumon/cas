@@ -110,15 +110,15 @@ public class LoginMB {
      public String logout() {
       HttpSession session = SessionUtil.getSession();
       session.invalidate();
-      return "/login/login";
+      return "/index.xhtml";
    }
       //get application status and evaluation status 
      public String applicationStatus(){
-      return loginEJB.applicationStatus(user.getEmail());
+      return loginEJB.applicationStatus(user.getUserName());
 
 } 
      public String evaluationStatus(){
-          return loginEJB.evaluationStatus(user.getEmail());
+          return loginEJB.evaluationStatus(user.getUserName());
 }
     
 }
