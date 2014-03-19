@@ -1,12 +1,22 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        reset Pass <strong>Fail</strong>
+        <ui:composition template="../preLoginTemplate.xhtml">
+            <ui:define name="right">
+                <p style="font-size:16px">
+                Reset Pass <strong>Fail</strong>. Please Check Token again.<br/>
+                
+                Click here to go to <h:link outcome="/resetpass/resetpassword" value="Reset Password Page"/><br/>
+                Or go to <h:link value="Home page" outcome="/index"/>
+                </p>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 
