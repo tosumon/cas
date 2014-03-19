@@ -77,13 +77,14 @@ public class LoginEJB {
     public String applicationStatus(String email){
     Applicant applicant=(Applicant)applicantFacade.find(email);
         if(applicant==null)
-           return "login_application_form";
+           return "/application";
           //email exists means applicant started application
              //check for the status of the application form
-        if(applicant.getApplicationStatus().equalsIgnoreCase("submitted"))
-               return "";
-        if(applicant.getApplicationStatus().equalsIgnoreCase("saved")){
+        else if(applicant.getApplicationStatus().equalsIgnoreCase("submitted"))
+               return "/applicationSubmitted";
+        else if(applicant.getApplicationStatus().equalsIgnoreCase("saved")){
             //retrive the saved application form for editting and return it
+            
          }
         return "";
   }
@@ -93,17 +94,17 @@ public class LoginEJB {
        emailTocheck=email;
         Applicant applicant=(Applicant)applicantFacade.find(email);
              if(applicant==null)
-                   return "";//application form is returned above in application status for null, no need to return again
+                   return "/application";//application form is returned above in application status for null, no need to return again
            //email exists means application started
             //check for the evaluation status
            if(applicant.getApplicationStatus().equalsIgnoreCase("saved"))
-                 return "";//since it is not yet submitted
+                 return "";//return the saved application, since it is not yet submitted
                 else//status could be determined and returned
               return "login_evaluation_status";
 
                }
  
-   public String evaluationStatus(){
+   public String evalStatus(){
    Applicant applicant=(Applicant) applicantFacade.find(emailTocheck);
    return applicant.getEvaluationStatus();
    } 
