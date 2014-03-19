@@ -96,7 +96,8 @@ public class LoginMB {
                  if(loginEJB.getUserFromDB().getUserType().equalsIgnoreCase("Admin")){
                      return "/admin/adHome";
                  }else{
-                  return "/login/login_return";
+                     System.out.println(" normal user !!!!");
+                  return "/login_return";
                  }
              
              }
