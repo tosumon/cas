@@ -28,8 +28,7 @@ import util.SessionUtil;
  *
  * @author atinkut
  */
-@Named
-@Stateful
+@Stateless
 public class LoginEJB {
 
     @EJB
@@ -47,29 +46,14 @@ public class LoginEJB {
              System.out.println("method is called"+hashedPwd); 
              //query the password in DB
             userFromDB=this.findByUserName(user.getUserName());
-            System.out.println("method is called"+userFromDB.getEmail()); 
+           // System.out.println("method is called"+userFromDB.getEmail()); 
              //to display the name of the logged in user
              //firstName=userFromDB.getFname();
+          if(null==userFromDB)
+              return false;
           
              return hashedPwd.equals(userFromDB.getPassword());
-            /* if(hashedPwd.equals(userFromDB.getPassword())){
-                    
-                HttpSession session=(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-                session.setAttribute("userBean", userFromDB);
-                 
-                 if(userFromDB.getUserType().equalsIgnoreCase("Admin")){
-                     return "/admin/adHome";
-                 }else{
-                  return "/login/login_return";
-                 }
-             
-             }
-             
-            
-         } catch (Exception ex) {
-             Logger.getLogger(LoginMB.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         return "/login/login_error";*/
+           
     }
     
    
@@ -124,7 +108,7 @@ public class LoginEJB {
     public String logout() {
       HttpSession session = SessionUtil.getSession();
       session.invalidate();
-      return "/login/login";
+      return "/index";
    }
  
 }
