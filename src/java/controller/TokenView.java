@@ -7,8 +7,8 @@
 package controller;
 
 import boundary.UserFacade;
-import boundary.user.ApplicantFacade;
 import boundary.user.TokenFacade;
+import controller.ApplicantView;
 import entities.user.Token;
 import entities.user.User;
 import java.security.NoSuchAlgorithmException;
@@ -37,6 +37,24 @@ public class TokenView {
     private UserFacade appFacade;
     
     private Token token;
+    private String newPassInput;
+
+    public String getNewPassInput() {
+        return newPassInput;
+    }
+
+    public void setNewPassInput(String newPassInput) {
+        this.newPassInput = newPassInput;
+    }
+
+    public String getNewPassRetype() {
+        return newPassRetype;
+    }
+
+    public void setNewPassRetype(String newPassRetype) {
+        this.newPassRetype = newPassRetype;
+    }
+    private String newPassRetype;
 
     public Token getToken() {
         return token;
@@ -55,10 +73,25 @@ public class TokenView {
         appFacade = new UserFacade();
     }
     
+    private boolean ValidationPass(String pass){
+        // Length must at lest 6
+        if(pass.length()<6)
+            return false;
+        return true;
+    }
+    
     public String submitToken() throws NoSuchAlgorithmException{
         List<Token> listToken = this.tokenFacade.findAll();
         for(Token T : listToken){
+            // Check Token
             if(this.token.getEmail().equals(T.getEmail()) && this.token.getToken().equals(T.getToken()) && T.getBeUsed() == 0){
+                // Check Password and Retype Password
+                if(!this.newPassInput.equals(this.newPassRetype))
+                    return "resetPassFail";           
+                // Check Validation of Pass
+                if(!ValidationPass(this.newPassInput))
+                    return "resetPassFail";   
+                
                // Update status of Token
                 T.setBeUsed(1);
                 this.tokenFacade.edit(T);
@@ -69,15 +102,14 @@ public class TokenView {
                 // ==================
                 
                 User app = appFacade.find(T.getEmail());
-                String newPass = RandomPasswordGenerator.generatePswd(6, 20, 2, 2, 2).toString();
-                String hashedPassword=HashAndSalting.get_SHA_1_SecurePassword(newPass, HashAndSalting.getSalt());
+                String hashedPassword=HashAndSalting.get_SHA_1_SecurePassword(this.newPassInput, HashAndSalting.getSalt());
                 app.setPassword(hashedPassword);
                 appFacade.edit(app);
                 
                 try{
                     SendEmail sendE = new SendEmail();
 
-                    sendE.createEmailMessage(app.getEmail(), newPass);
+                    sendE.createEmailMessage(app.getEmail(), this.newPassInput);
                 }
                 catch (Exception ex) {
                     Logger.getLogger(ApplicantView.class.getName()).log(Level.SEVERE, null, ex);
@@ -88,7 +120,43 @@ public class TokenView {
                 return "resetPassSuccess"; 
             }
         }
-        
         return "resetPassFail";
     }
+    
+    public String createNewToken(){
+        List<User> listApp = this.appFacade.findAll();
+        String returnString = "/forgetpass/ReceiveEmailForgetPass";
+        for(User app:listApp){
+            if(this.token.getEmail().equals(app.getEmail())){
+                
+                    
+                    // Create Token String
+                    String tokenString = RandomPasswordGenerator.generatePswd(6, 6, 0, 6, 0).toString();
+                    
+                    // Create Token Entity and Save
+                    
+                    token.setEmail(app.getEmail());
+                    token.setToken(tokenString);
+                    token.setBeUsed(0);
+                    token.setIdApplicant(app.getUserId());
+                    
+                    this.tokenFacade.create(token);
+                    
+                    this.appFacade.edit(app);
+                   try {
+                    SendEmail sendE = new SendEmail();            
+                    sendE.createEmailToken(app.getEmail(), tokenString);
+
+                    return returnString;
+                }
+                catch (Exception ex) {
+                    Logger.getLogger(ApplicantView.class.getName()).log(Level.SEVERE, null, ex);
+                    return returnString;
+                }
+            }                 
+        }
+        return returnString;
+    }
+
+    
 }
