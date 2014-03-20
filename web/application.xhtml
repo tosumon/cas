@@ -47,7 +47,7 @@
                                         </p:selectOneMenu>                                         
                                         <h:outputLabel for="dateOfBirth" value="Date Of Birth*" styleClass="requiredLbl"/>                                        
                                         <p:calendar id="dateOfBirth" value="#{ApplicationMB.applicant.personalData.dateOfBirth}" showOn="button" navigator="true" required="true" requiredMessage="Please enter date of birth"/>
-                                        <h:outputLabel for="countryOfCitizenship" value="countryOfCitizenship*" styleClass="requiredLbl"/>                                       
+                                        <h:outputLabel for="countryOfCitizenship" value="Country Of Citizenship*" styleClass="requiredLbl"/>                                       
                                         <p:selectOneMenu id="countryOfCitizenship" value="#{ApplicationMB.applicant.personalData.countryOfCitizenship}" style="width: 200px" required="true">  
                                             <f:selectItem itemLabel="Select Country" itemValue="0" />  
                                             <f:selectItems value="#{CountryList.countries}" />                                                                                          
@@ -58,7 +58,7 @@
                                             <f:selectItems value="#{CountryList.countries}" />                                                                                          
                                         </p:selectOneMenu> 
                                         <h:outputLabel for="cityOfLiving" value="City Of Living*" styleClass="requiredLbl"/>
-                                        <p:inputText id="cityOfLiving" label="cityOfLiving" value="#{ApplicationMB.applicant.personalData.cityOfLiving}" required="true" requiredMessage="Please enter city of living"/>
+                                        <p:inputText id="cityOfLiving" label="City Of Living" value="#{ApplicationMB.applicant.personalData.cityOfLiving}" required="true" requiredMessage="Please enter city of living"/>
                                         <h:outputLabel for="visaStatus" value="Visa Status*" styleClass="requiredLbl"/>
                                         <p:selectOneMenu id="visaStatus" value="#{ApplicationMB.applicant.personalData.visaStatus}" style="width: 200px" required="true">  
                                             <f:selectItem itemLabel="Select Status" itemValue="0" />  
@@ -71,7 +71,7 @@
                                         <p:inputText id="emailAddress" label="emailAddress" value="#{ApplicationMB.applicant.personalData.emailAddress}" required="true" requiredMessage="Please enter emial address">
                                             
                                         </p:inputText>
-                                        <h:outputLabel for="skypeId" value="Skype Id" styleClass="requiredLbl"/>
+                                        <h:outputLabel for="skypeId" value="Skype ID" styleClass="requiredLbl"/>
                                         <p:inputText id="skypeId" label="skypeId" value="#{ApplicationMB.applicant.personalData.skypeId}" required="false"/>
                                         <h:outputLabel for="phone" value="Phone*" styleClass="requiredLbl"/>
                                         <p:inputMask id="phone" value="#{ApplicationMB.applicant.personalData.phone}" mask="(999) 999-9999" required="true" requiredMessage="Please enter phone number"/>
@@ -214,7 +214,7 @@
                                         <f:selectItem itemLabel="0 to 10" itemValue="0 to 10" />   
                                     </p:selectOneMenu>   
                                     
-                                    <h:outputLabel for="finalGpa" value="Final Gpa*" styleClass="requiredLbl"/>
+                                    <h:outputLabel for="finalGpa" value="Final GPA*" styleClass="requiredLbl"/>
                                     <p:inputText id="finalGpa" label="finalGpa" value="#{ApplicationMB.applicant.educationHistory.finalGpa}" required="true" validator="#{commonValidator.finalGpa}">
                                         
                                     </p:inputText>
