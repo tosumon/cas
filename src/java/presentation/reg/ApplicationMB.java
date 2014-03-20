@@ -116,7 +116,7 @@ public class ApplicationMB {
     public String saveApplication() {
         if (applicantFacade.find(applicant.getEmail()) == null) {//new application 
             applicant.setApplicationStatus("Saved");
-			applicant.setEvaluationStatus("Undecided");//is necessary?
+	applicant.setEvaluationStatus("Undecided");//is necessary?
             this.applicantFacade.create(applicant);
             return "ApplicationSaveConfMsg";
         } else {
@@ -164,11 +164,13 @@ public class ApplicationMB {
     }
     
     public String getApplicationPage(){
+        
          if (applicantFacade.find(applicant.getEmail()) == null) {
              return "/application";
          }else{
+              System.out.println(" email in getapp "+this.application().getApplicationStatus());
              if (this.application().getApplicationStatus().equalsIgnoreCase("Saved")) {//save earlier                
-                 System.out.println(" email "+user.getEmail());
+                 System.out.println(" email in getapp "+user.getEmail());
                  this.applicant= this.applicantFacade.findApplicantsByEmail(user.getEmail()).get(0);
                 // applicant.setApplicationStatus("Saved");
                // this.applicantFacade.edit(applicant);
@@ -204,7 +206,44 @@ public class ApplicationMB {
     public Applicant application() {
         return (Applicant) applicantFacade.find(applicant.getEmail());
     }
-   
+
+
+    // ---Submit the applicant and returns the string "ApplicationSubmitConfMsg.xhtml"---------------------------------
+    public String submitApplicaton(Long eid) throws MessagingException {
+        System.out.println(" status : "+this.application().getApplicationStatus());
+        if (applicantFacade.find(applicant.getEmail()) == null) {//new application 
+            applicant.setEvaluationStatus(getEvaluationDecision());
+            applicant.setApplicationStatus("Submitted");
+            this.applicantFacade.create(applicant);            
+            String toMail = applicant.getEmail();
+            System.out.print(toMail);
+            String emailSub = "Submit successful";
+            String emailBody = "Submit successful";
+            sendEmail.sendEmailMessage(toMail, emailSub, emailBody);
+            sendEmail.sendEmailMessage(toMail, emailSub, emailBody);
+            return "ApplicationSubmitConfMsg";
+        } //System.out.print("Saved Email:"+applicant.getApplicationStatus());
+        else {
+            if (this.application().getApplicationStatus().equalsIgnoreCase("Saved")) {//save earlier
+                applicant.setEvaluationStatus(getEvaluationDecision());
+                applicant.setApplicationStatus("Submitted");
+                applicant.setApplicantId(eid);
+               
+                //System.out.println(" IDDD "+eid);
+                //this.applicantFacade.remove(applicant);
+                this.applicantFacade.edit(applicant);               
+                String toMail = applicant.getEmail();
+              
+                String emailSub = "Submit successful";
+                String emailBody = "Submit successful";
+                sendEmail.sendEmailMessage(toMail, emailSub, emailBody);
+                return "ApplicationSubmitConfMsg";
+            } else {//already submitted
+                return "ApplicationSubmitErrorMsg";
+            }
+        }
+    }
+
 
     //------------------------------------------------------------------------------------------------------
     public String getEvaluationDecision() {
