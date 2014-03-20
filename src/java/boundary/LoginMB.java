@@ -10,8 +10,6 @@ package boundary;
 import controller.LoginEJB;
 import entities.user.User;
 import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -105,7 +103,7 @@ public class LoginMB {
              
             
          else
-         return "/login/login_error";
+         return "/index";
     
 }
     //String loggedName=loginEJB.getUserFromDB().getFname();
