@@ -7,7 +7,6 @@ package presentation.reg;
 
 import boundary.user.ApplicantFacade;
 import boundary.user.PersonalDataFacade;
-import com.sun.xml.bind.v2.TODO;
 import entities.user.Applicant;
 import entities.user.CsCourse;
 import entities.user.EducationHistory;
