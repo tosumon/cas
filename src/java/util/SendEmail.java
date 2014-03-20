@@ -54,7 +54,7 @@ public class SendEmail {
 
       String[] toEmails = {username};//username is email
       String emailSubject = "Compro Registration System";
-      String emailBody = "This is an email sent by <b>MUM Compro Registration System</b>.<p>Dear applicant,</p> <p>Use the following credentials for login</p>  <p><b>username:</b>" + username + "</p> <p><b>password:</b>" + password + "</p>";
+      String emailBody = "This is an email sent by <b>MUM Compro Registration System</b>.<p>Dear applicant,</p> <p>Use the following credentials for login</p>  <p><b>username: </b>" + username + "</p> <p><b>password: </b>" + password + "</p>";
 
       mailSession = Session.getDefaultInstance(emailProperties, null);
       emailMessage = new MimeMessage(mailSession);
@@ -83,7 +83,7 @@ public class SendEmail {
     
     String[] toEmails = { username };//username is email
     String emailSubject = "Compro Registration - Reset Password Token";
-    String emailBody = "This is an email sent by <b>MUM Compro Registration System</b>.<p>Dear applicant,</p> <p>This is token use to reset your passowrd</p> <p><b>Token:</b>" +token+"</p></br>Go to this link: http://localhost:8080"+path+"/faces/resetpass/resetpassword.xhtml?emial=" + username + "&token=" + token;
+    String emailBody = "This is an email sent by <b>MUM Compro Registration System</b>.<p>Dear applicant,</p> <p>This is token use to reset your passowrd</p> <p><b>Token: </b>" +token+"</p></br>Go to this link: http://localhost:8080"+path+"/faces/resetpass/resetpassword.xhtml?emial=" + username + "&token=" + token;
  
     mailSession = Session.getDefaultInstance(emailProperties, null);
     emailMessage = new MimeMessage(mailSession);
