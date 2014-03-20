@@ -13,13 +13,13 @@
     <body> 
         <ui:composition template="/loginTemplate.xhtml">
 
-              <ui:define name="left">
-                  <p>welcome,<h:outputText value="#{loginMB.loggedName}"/></p>
+             <ui:define name="left">
+                <p>  welcome,<h:outputText value="#{loginMB.loggedName}"/></p>
                <p> <h:link outcome="/admin/search/search" value="Search Application" /></p>
+               <p><h:link outcome="/delete_applicant/deleteApplicant" value="Delete Applicant"/></p>
                 <p> 
                     <h:form>       
-                        <p><h:commandLink value="Applicant" action="#{adminMB.getApplicantInfo}"/></p>
-                        <p><h:commandLink value="Logout" action="#{loginMB.logout}"/></p>
+                     <p><h:commandLink value="Logout" action="#{loginMB.logout}"/></p>
                     </h:form>
             
                 </p>
