@@ -116,15 +116,49 @@ public class ApplicationMB {
     public String saveApplication() {
         if (applicantFacade.find(applicant.getEmail()) == null) {//new application 
             applicant.setApplicationStatus("Saved");
+			applicant.setEvaluationStatus("Undecided");//is necessary?
             this.applicantFacade.create(applicant);
             return "ApplicationSaveConfMsg";
         } else {
             if (this.application().getApplicationStatus() == "Saved") {//save earlier                
                 applicant.setApplicationStatus("Saved");
+				applicant.setEvaluationStatus("Undecided");//is necessary?
                 this.applicantFacade.edit(applicant);
                 return "ApplicationSaveConfMsg";
-            } else {
+            } else {//submitted
                 return "ApplicationSaveErrorMsg";
+            }
+        }
+    }
+	
+	//-------------------------------------------------------------------------------------------------------------------
+	
+    public String submitApplicaton() throws MessagingException {
+        if (applicantFacade.find(applicant.getEmail()) == null) {//new application 
+            applicant.setEvaluationStatus(getEvaluationDecision());
+            applicant.setApplicationStatus("Submitted");
+            this.applicantFacade.create(applicant);            
+            String toMail = applicant.getEmail();
+            System.out.print(toMail);
+            String emailSub = "Submit successful";
+            String emailBody = "Submit successful";
+            sendEmail.sendEmailMessage(toMail, emailSub, emailBody);
+            sendEmail.sendEmailMessage(toMail, emailSub, emailBody);
+            return "ApplicationSubmitConfMsg";
+        } //System.out.print("Saved Email:"+applicant.getApplicationStatus());
+        else {
+            if (this.application().getApplicationStatus() == "Saved") {//save earlier
+                applicant.setEvaluationStatus(getEvaluationDecision());
+                applicant.setApplicationStatus("Submitted");
+                this.applicantFacade.edit(applicant);               
+                String toMail = applicant.getEmail();
+                System.out.print(toMail);
+                String emailSub = "Submit successful";
+                String emailBody = "Submit successful";
+                sendEmail.sendEmailMessage(toMail, emailSub, emailBody);
+                return "ApplicationSubmitConfMsg";
+            } else {//already submitted
+                return "ApplicationSubmitErrorMsg";
             }
         }
     }
@@ -170,37 +204,7 @@ public class ApplicationMB {
     public Applicant application() {
         return (Applicant) applicantFacade.find(applicant.getEmail());
     }
-
-    // ---Submit the applicant and returns the string "ApplicationSubmitConfMsg.xhtml"---------------------------------
-    public String submitApplicaton() throws MessagingException {
-        if (applicantFacade.find(applicant.getEmail()) == null) {//new application 
-            applicant.setEvaluationStatus(getEvaluationDecision());
-            applicant.setApplicationStatus("Submitted");
-            this.applicantFacade.create(applicant);            
-            String toMail = applicant.getEmail();
-            System.out.print(toMail);
-            String emailSub = "Submit successful";
-            String emailBody = "Submit successful";
-            sendEmail.sendEmailMessage(toMail, emailSub, emailBody);
-            sendEmail.sendEmailMessage(toMail, emailSub, emailBody);
-            return "ApplicationSubmitConfMsg";
-        } //System.out.print("Saved Email:"+applicant.getApplicationStatus());
-        else {
-            if (this.application().getApplicationStatus() == "Saved") {//save earlier
-                applicant.setEvaluationStatus(getEvaluationDecision());
-                applicant.setApplicationStatus("Submitted");
-                this.applicantFacade.edit(applicant);               
-                String toMail = applicant.getEmail();
-                System.out.print(toMail);
-                String emailSub = "Submit successful";
-                String emailBody = "Submit successful";
-                sendEmail.sendEmailMessage(toMail, emailSub, emailBody);
-                return "ApplicationSubmitConfMsg";
-            } else {//already submitted
-                return "ApplicationSubmitErrorMsg";
-            }
-        }
-    }
+   
 
     //------------------------------------------------------------------------------------------------------
     public String getEvaluationDecision() {
