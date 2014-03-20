@@ -73,8 +73,13 @@ public class AdminMB {
     public String updateApplicaton(){
         
        Applicant app=  adminController.getApplicantInfo(new Long(this.updateId));
+        System.out.println("iddd "+this.updateId);
+        System.out.println(" value "+app.getPersonalData().getEmailAddress());
+        
        app.setEvaluationStatus(this.applicant.getEvaluationStatus());
        app.setApplicationStatus(this.applicant.getApplicationStatus());
+        System.out.println(" status "+app.getEvaluationStatus());
+        
        adminController.updateApplicaton(app);
        
        return "/admin/search/search";   
