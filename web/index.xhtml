@@ -11,65 +11,62 @@
     <h:body>
         <ui:composition template="./preLoginTemplate.xhtml">
             <ui:define name="right">
-              
-                        <h:form>
-                        <!--  Login -->
-                        <h1 style="color: black">Log in to start or continue application</h1><br/>
-                        <table>                            
-                            <tr>
-                               
-                                    <td>
-                                        <h:outputLabel value="Username: " style="padding-left: 2px"/><br/>
-                                        <h:inputText value="#{loginMB.user.userName}" class="input_tex_1"/><br/>
-                                    </td>
 
-                                    <td>
-                                        <h:outputLabel value="Password: " style="padding-left: 2px"/><br/>
-                                         <h:inputSecret value="#{loginMB.user.password}" class="input_tex_1"/><br/>
+                <h:form>
+                    <!--  Login -->
+                    <h1 style="color: black">Log in to start or continue application</h1><br/>
+                    <table>                            
+                        <tr>
 
-                                    </td>                                
-                                    <td>
-                                       <br/><h:commandButton value="Login" action="#{loginMB.authenticate}" class="myButton"/>
-                                    </td>
-                               
-                            </tr>                            
-                        </table>
-                        
-                        
-                        <h:link value="Forget Password" outcome="/forgetpass/ForgetPass" style="padding-left: 5px"/>
-                        
-                        </h:form> 
-                        <br/>
-                        
-                        <br/>
-                        <br/>
-                        <br/>
-                        <h:form>
-                        <!-- Create new account -->
-                        <h1>Create New Account</h1>
-                        <h:inputText value="#{registerMB.user.fname}" p:placeholder="First Name" class="input_tex_1"></h:inputText> 
-                        <h:inputText value="#{registerMB.user.lname}" p:placeholder="Last Name" class="input_tex_1"></h:inputText><br/>
-                        
-                        <h:inputText value="#{registerMB.user.email}" p:placeholder="Email" class="input_tex_2">
-                        
-                          <f:validator validatorId="emailValidator" />
-                 <f:attribute name="confirm" value="#{confirm}" />   
-                            
-                        </h:inputText>
-                        
-                        
+                            <td>
+                                <h:outputLabel value="Username: " style="padding-left: 2px"/><br/>
+                                <h:inputText value="#{loginMB.user.userName}" class="input_tex_1"/><br/>
+                            </td>
 
-                        <h:inputText class="input_tex_2" p:placeholder="Confirn Email" id="confirmemail" binding="#{confirm}" required="true" requiredMessage="Please Confirm Email!">
-               </h:inputText>
-                        
-                        <h:commandButton value="Create Account" action="#{registerMB.makeRegistration}" class="myButton"/>
-                       </h:form>
-                   
-                
-                
-                
+                            <td>
+                                <h:outputLabel value="Password: " style="padding-left: 2px"/><br/>
+                                <h:inputSecret value="#{loginMB.user.password}" class="input_tex_1"/><br/>
+
+                            </td>                                
+                            <td>
+                                <br/><h:commandButton value="Login" action="#{loginMB.authenticate}" class="myButton"/>
+                            </td>
+
+                        </tr>                            
+                    </table>
+
+
+                    <h:link value="Forget Password" outcome="/forgetpass/ForgetPass" style="padding-left: 5px"/>
+
+                </h:form> 
+                <br/>
+
+                <br/>
+                <br/>
+                <br/>
+                <h:form>
+                    <!-- Create new account -->
+                    <h1>Create New Account</h1>
+                    <h:inputText value="#{registerMB.user.fname}" p:placeholder="First Name" class="input_tex_1"></h:inputText> 
+                    <h:inputText value="#{registerMB.user.lname}" p:placeholder="Last Name" class="input_tex_1"></h:inputText><br/>
+
+                    <h:inputText value="#{registerMB.user.email}" p:placeholder="Email" class="input_tex_2">
+
+                        <f:validator validatorId="emailValidator" />
+                        <f:attribute name="confirm" value="#{confirm}" />   
+
+                    </h:inputText>
+
+
+
+                    <h:inputText class="input_tex_2" p:placeholder="Confirn Email" id="confirmemail" binding="#{confirm}" required="true" requiredMessage="Please Confirm Email!">
+                    </h:inputText>
+
+                    <h:commandButton value="Create Account" action="#{registerMB.makeRegistration}" class="myButton"/>
+                </h:form>
             </ui:define>
         </ui:composition>
+
         
     </h:body>
 </html>
