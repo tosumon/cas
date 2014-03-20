@@ -91,9 +91,10 @@ public class LoginMB {
                 System.out.println("logged user"+loggedName);
                  HttpSession session=(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
                 session.setAttribute("User", loginEJB.getUserFromDB());
-                //session.s
+                
                  
                  if(loginEJB.getUserFromDB().getUserType().equalsIgnoreCase("Admin")){
+                     System.out.println(" admin user !!!!");
                      return "/admin/adHome";
                  }else{
                      System.out.println(" normal user !!!!");
