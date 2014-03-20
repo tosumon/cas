@@ -182,7 +182,7 @@ public class ApplicationMB {
     
     public String getApplicationStatus(){
          if (applicantFacade.find(applicant.getEmail()) == null) {
-             return "/application";
+             return "/status/ApplicationStatusForNull";
          }else{
              this.appStatus=this.application().getApplicationStatus();
              return "/status/ApplicationStatus";
@@ -192,7 +192,7 @@ public class ApplicationMB {
     
      public String getEvaluationStatus(){
          if (applicantFacade.find(applicant.getEmail()) == null) {
-             return "/application";
+             return "/status/EvaluationStatusForNull";
          }else{
              this.evlStatus=this.application().getEvaluationStatus();
              return "/status/EvaluationStatus";
