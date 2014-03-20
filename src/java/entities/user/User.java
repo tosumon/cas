@@ -53,17 +53,17 @@ public class User implements Serializable {
     private String email;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 100)
     @Column(name = "fname")
     private String fname;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 50)
     @Column(name = "lname")
     private String lname;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 50)
     @Column(name = "userName")
     private String userName;
     @Basic(optional = false)
@@ -73,7 +73,7 @@ public class User implements Serializable {
     private String password;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 50)
     @Column(name = "userType")
     private String userType;
 
