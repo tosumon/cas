@@ -99,7 +99,7 @@ public class LoginEJB {
             //check for the evaluation status
            if(applicant.getApplicationStatus().equalsIgnoreCase("saved"))
                  return "";//return the saved application, since it is not yet submitted
-                else//status could be determined and returned
+             else//status could be determined and returned
               return "login_evaluation_status";
 
                }

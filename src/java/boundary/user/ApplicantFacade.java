@@ -55,5 +55,10 @@ public class ApplicantFacade extends AbstractFacade<Applicant> {
         public List<Applicant> findApplicantsByEvlStatus(String evlStatus) {         
        return  em.createQuery("SELECT c FROM Applicant c WHERE c.evaluationStatus LIKE :fname").setParameter("fname", evlStatus).setMaxResults(100).getResultList();
     }
+        
+        
+      public Applicant searchById(Long id) {         
+       return  (Applicant)em.createQuery("SELECT c FROM Applicant c WHERE c.applicantId = :fname").setParameter("fname", id).getResultList().get(0);
+    }
     
 }

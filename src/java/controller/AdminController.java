@@ -24,8 +24,10 @@ public class AdminController {
      public Applicant getApplicantInfo(Long id){
          System.out.println("function called");
          //List<Applicant> applicants= applicantFacade.findAll();
-       Applicant applicant= applicantFacade.find(id);
-       //System.out.println(applicant.getPersonalData().getCityOfLiving());
+
+         Applicant applicant= applicantFacade.searchById(id);
+       
+//System.out.println(applicant.getPersonalData().getCityOfLiving());
        return applicant;
      }
      

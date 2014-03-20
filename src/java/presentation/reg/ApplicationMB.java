@@ -34,6 +34,7 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.faces.validator.ValidatorException;
 import javax.mail.MessagingException;
 import util.SendEmail;
+import util.SessionUtil;
 
 /**
  *
@@ -66,8 +67,12 @@ public class ApplicationMB {
     public ApplicationMB() {
         //applicant.setApplicationStatus("null");
         //System.out.println(user.getUserName());
+        user= (User)SessionUtil.getSession().getAttribute("User");
+        
+        //System.out.println("user email "+user.getEmail());
+        
         applicant = new Applicant();
-        applicant.setEmail("tazingdong@gmail.com");
+        applicant.setEmail(user.getEmail());
         csCourse = new CsCourse();
         educationHistory = new EducationHistory();
         englishProficiency = new EnglishProficiency();
@@ -104,6 +109,21 @@ public class ApplicationMB {
                 return "ApplicationSaveErrorMsg";
             }
         }
+    }
+    
+    public String getApplicationPage(){
+         if (applicantFacade.find(applicant.getEmail()) == null) {
+             return "/application";
+         }else{
+             if (this.application().getApplicationStatus() == "Saved") {//save earlier                
+               // applicant.setApplicationStatus("Saved");
+               // this.applicantFacade.edit(applicant);
+                return "/ApplicationSaveConfMsg";
+            } else {
+                return "/ApplicationSubmitErrorMsg";
+            }
+         }
+        
     }
 
     //------------------------------------------------------------------------------------------------------------ 

@@ -7,6 +7,7 @@
 package util;
 
 import java.util.Properties;
+import javax.faces.context.FacesContext;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -14,6 +15,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -68,13 +70,20 @@ public class SendEmail {
  
   }
   
-  public void createEmailToken(String username, String password) throws AddressException,
+  public void createEmailToken(String username, String token) throws AddressException,
       MessagingException {
     this.setMailServerProperties();
     
+    
+    String path=FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath();
+     
+    //HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    //String url = req.getRequestURL().toString();
+    System.out.println("path ::: "+path);
+    
     String[] toEmails = { username };//username is email
     String emailSubject = "Compro Registration - Reset Password Token";
-    String emailBody = "This is an email sent by <b>MUM Compro Registration System</b>.<p>Dear applicant,</p> <p>This is token use to reset your passowrd</p> <p><b>Token:</b>" +password+"</p></br>Go to this link: http://localhost:8080/EEMessage/faces/resetpassword.xhtml";
+    String emailBody = "This is an email sent by <b>MUM Compro Registration System</b>.<p>Dear applicant,</p> <p>This is token use to reset your passowrd</p> <p><b>Token:</b>" +token+"</p></br>Go to this link: http://localhost:8080"+path+"/faces/resetpass/resetpassword.xhtml?emial=" + username + "&token=" + token;
  
     mailSession = Session.getDefaultInstance(emailProperties, null);
     emailMessage = new MimeMessage(mailSession);

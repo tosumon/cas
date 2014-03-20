@@ -53,7 +53,7 @@ public class PersonalData implements Serializable {
     private Applicant applicant;
 
    public PersonalData (){
-       this.setFirstName("Atik");
+      /* this.setFirstName("Atik");
        this.setMiddleName("Atik");
        this.setLastName("Atik");
        this.setSex("Atik");
@@ -62,7 +62,7 @@ public class PersonalData implements Serializable {
        this.setCityOfLiving("Cth");
        this.setEmailAddress("aaa@as.dd");
        this.setSkypeId("dsds");
-       this.setPhone("1111111111");
+       this.setPhone("1111111111");*/
    }
     public Long getPersonalDataId() {
         return personalDataId;

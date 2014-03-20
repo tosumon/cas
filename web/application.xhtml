@@ -10,8 +10,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
-
+      
         <ui:composition template="loginTemplate.xhtml">
             
        
@@ -20,8 +19,11 @@
                 <br/>
                 
                  <h:form>
-                     <h:commandLink value="Logout" action="#{loginMB.logout}"/>
-                 </h:form> 
+                     <p> <h:commandLink value="Application Status" action="#{loginMB.applicationStatus}"/></p>
+                     <p><h:commandLink value="Evaluation Status" action="#{loginMB.evaluationStatus}"/></p>
+                     <h:commandLink action="/application" value="Application" />
+                     <p><h:commandLink value="Logout" action="#{loginMB.logout}"/></p>
+                 </h:form>
           </ui:define> 
         
             <ui:define name="content">

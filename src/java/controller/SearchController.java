@@ -30,7 +30,7 @@ public class SearchController {
     }
     
      public Applicant searchById(Long appid) {
-        return appFacade.find(appid);
+        return appFacade.searchById(appid);
     }
 
     public  List<Applicant> searchByEmail(String email) {

@@ -97,7 +97,7 @@ public class LoginMB {
                      return "/admin/adHome";
                  }else{
                      System.out.println(" normal user !!!!");
-                  return "/login_return";
+                  return "login/login_return";
                  }
              
              }

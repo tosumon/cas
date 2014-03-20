@@ -48,7 +48,7 @@ public class RegisterEJB {
                 String hashedPassword=HashAndSalting.get_SHA_1_SecurePassword(password, HashAndSalting.getSalt());
                 user.setUserName(user.getEmail());
                 user.setPassword(hashedPassword);
-                user.setUserType("Admin");
+                user.setUserType("Applicant");
                 //this.setLogin(login);
               
                 //send email to the applicant
