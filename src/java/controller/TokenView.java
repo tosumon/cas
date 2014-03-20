@@ -38,6 +38,15 @@ public class TokenView {
     
     private Token token;
     private String newPassInput;
+    private String currentPass;
+
+    public String getCurrentPass() {
+        return currentPass;
+    }
+
+    public void setCurrentPass(String currentPass) {
+        this.currentPass = currentPass;
+    }
 
     public String getNewPassInput() {
         return newPassInput;
@@ -158,5 +167,4 @@ public class TokenView {
         return returnString;
     }
 
-    
 }
