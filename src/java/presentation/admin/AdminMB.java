@@ -53,7 +53,7 @@ public class AdminMB {
     
     public String getApplicantInfo(){
       
-     Applicant app=  adminController.getApplicantInfo(new Long(3));
+     Applicant app=  adminController.getApplicantInfo(new Long(this.updateId));
      if(null!=app){
          this.applicant=app;
          return "/admin/appInfo";
