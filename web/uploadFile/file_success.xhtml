@@ -6,18 +6,7 @@
 
     <body>
 
-        <ui:composition template="../loginTemplate.xhtml">
-            
-        
-
-            <ui:define name="left">
-              <p> <h4>welcome, <h:outputText value="#{loginEJB.firstName}"/></h4></p>
-                <br/>
-                
-                 <h:form>
-                     <h:commandLink value="Logout" action="#{loginEJB.logout}"/>
-                 </h:form>   
-            </ui:define>
+       <ui:composition template="../loginTemplate_User.xhtml">
 
             <ui:define name="content">
                 <h1> File is uploaded successfully!!</h1>

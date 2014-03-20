@@ -7,19 +7,7 @@
 
     <body>
 
-         <ui:composition template="../loginTemplate.xhtml">
-            
-
-            <ui:define name="left">
-                <p> <h4>welcome, <h:outputText value="#{loginMB.loggedName}"/></h4></p>
-                <br/>
-                
-                 <h:form>
-                     <h:commandLink value="Logout" action="#{loginMB.logout()}"/>
-                 </h:form> 
-                
-               
-            </ui:define>
+         <ui:composition template="../loginTemplate_User.xhtml">
 
              
             <ui:define name="content">

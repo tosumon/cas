@@ -89,6 +89,7 @@ public class SearchMB {
     }
 
     public List<Applicant> getResults() {
+        this.search();
         return results;
     }
 
@@ -117,6 +118,7 @@ public class SearchMB {
     public String search() {
 
         System.out.println("size " + this.getSearchBy());
+        if(this.getSearchBy()!=null){
         if (this.getSearchBy().equalsIgnoreCase("email")) {
             this.results = searchControl.searchByEmail(this.getEmail());
         }else if (this.getSearchBy().equalsIgnoreCase("country")) {
@@ -127,6 +129,7 @@ public class SearchMB {
             this.results = searchControl.searchByEvlStatus(this.getEvaluationStatus());
         }else if (this.getSearchBy().equalsIgnoreCase("appStatus")) {
             this.results = searchControl.searchByAppStatus(this.getApplicationStatus());
+        }
         }
 
         return "";

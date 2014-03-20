@@ -9,10 +9,14 @@ package presentation.admin;
 
 import controller.AdminController;
 import entities.user.Applicant;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.mail.MessagingException;
+import util.SendEmail;
 
 
 /**
@@ -26,6 +30,7 @@ public class AdminMB {
     private AdminController adminController;    
 
     private Applicant applicant;
+    private SendEmail sendEmail = new SendEmail();
    
     @ManagedProperty("#{param.updateId}")
     private int updateId;
@@ -81,7 +86,19 @@ public class AdminMB {
         System.out.println(" status "+app.getEvaluationStatus());
         
        adminController.updateApplicaton(app);
-       
+       /**
+        * sending email
+        */
+            String toMail = app.getEmail();
+            System.out.print(toMail);
+            String emailSub = "Your application status has updated";
+            String emailBody = "Current application status :"+app.getApplicationStatus()+" <br/>"+" Current Evaluation Status "+app.getEvaluationStatus();
+        try {
+            sendEmail.sendEmailMessage(toMail, emailSub, emailBody);            
+        } catch (MessagingException ex) {
+            Logger.getLogger(AdminMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
        return "/admin/search/search";   
     }
     
