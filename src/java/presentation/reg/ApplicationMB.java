@@ -60,6 +60,25 @@ public class ApplicationMB {
     private TOEFL toefl;
 
     private User user;
+    
+    private String appStatus;
+    private String evlStatus;
+
+    public String getEvlStatus() {
+        return evlStatus;
+    }
+
+    public void setEvlStatus(String evlStatus) {
+        this.evlStatus = evlStatus;
+    }
+
+    public String getAppStatus() {
+        return appStatus;
+    }
+
+    public void setAppStatus(String appStatus) {
+        this.appStatus = appStatus;
+    }
 
     //private String validationValue;
     private SendEmail sendEmail = new SendEmail();
@@ -115,13 +134,35 @@ public class ApplicationMB {
          if (applicantFacade.find(applicant.getEmail()) == null) {
              return "/application";
          }else{
-             if (this.application().getApplicationStatus() == "Saved") {//save earlier                
-               // applicant.setApplicationStatus("Saved");
+             if (this.application().getApplicationStatus().equalsIgnoreCase("Saved")) {//save earlier                
+                 System.out.println(" email "+user.getEmail());
+                 this.applicant= this.applicantFacade.findApplicantsByEmail(user.getEmail()).get(0);
+                // applicant.setApplicationStatus("Saved");
                // this.applicantFacade.edit(applicant);
-                return "/ApplicationSaveConfMsg";
+                return "/application";
             } else {
                 return "/ApplicationSubmitErrorMsg";
             }
+         }
+        
+    }
+    
+    public String getApplicationStatus(){
+         if (applicantFacade.find(applicant.getEmail()) == null) {
+             return "/application";
+         }else{
+             this.appStatus=this.application().getApplicationStatus();
+             return "/status/ApplicationStatus";
+         }
+        
+    }
+    
+     public String getEvaluationStatus(){
+         if (applicantFacade.find(applicant.getEmail()) == null) {
+             return "/application";
+         }else{
+             this.evlStatus=this.application().getEvaluationStatus();
+             return "/status/EvaluationStatus";
          }
         
     }
